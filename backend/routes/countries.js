@@ -6,7 +6,7 @@ const config = require('config');
 const privateKey = config.get('privateKey-externalapi');
 
 router.get('/', function (req, res) {
-  const url = 'https://v3.football.api-sports.io/countries?';
+  const url = 'https://v3.football.api-sports.io/countries';
 
   axios({
     method: 'get',

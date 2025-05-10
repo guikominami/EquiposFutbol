@@ -15,6 +15,10 @@ const favoriteTeamSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  teamId: {
+    type: Number,
+    required: true,
+  },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
@@ -28,6 +32,7 @@ function validateTeam(team) {
   const schema = Joi.object({
     name: Joi.string().min(2).required(),
     countryId: Joi.number().integer().min(1).max(9999).required(),
+    teamId: Joi.number().integer().min(1).max(9999).required(),
     userId: JoiObjectId().required(),
   });
 

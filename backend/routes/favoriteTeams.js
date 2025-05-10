@@ -28,6 +28,7 @@ router.post('/', async (req, res) => {
   let newFavoriteTeam = new FavoriteTeam({
     name: req.body.name,
     countryId: req.body.countryId,
+    teamId: req.body.teamId,
     userId: req.body.userId,
   });
 
@@ -36,33 +37,15 @@ router.post('/', async (req, res) => {
   res.send(newFavoriteTeam);
 });
 
-router.put('/:id', (req, res) => {
-  const { error } = validate(req.body);
+router.delete('/:id', async (req, res) => {
+  const teamToDelete = await User.findByIdAndDelete(req.params.id);
 
-  if (error) return res.status(400).send(error.details[0].message);
+  if (!teamToDelete)
+    return res
+      .status(404)
+      .send('The teram with the given Id was not found for this user.');
 
-  const teamToBeUpdated = favoriteTeams.find(
-    (t) => t.id === parseInt(req.params.id)
-  );
-
-  if (!teamToBeUpdated)
-    return res.status(404).send('The team with the given Id was not found.');
-
-  teamToBeUpdated.name = req.body.name;
-  res.send(teamToBeUpdated);
-});
-
-router.delete('/:id', (req, res) => {
-  const teamToBeRemoved = favoriteTeams.find(
-    (t) => t.id === parseInt(req.params.id)
-  );
-  if (!teamToBeRemoved)
-    return res.status(404).send('The team with the given Id was not found.');
-
-  const indexTeam = favoriteTeams.indexOf(teamToBeRemoved);
-  favoriteTeams.splice(indexTeam, 1);
-
-  res.send(teamToBeRemoved);
+  res.send(teamToDelete);
 });
 
 module.exports = router;
