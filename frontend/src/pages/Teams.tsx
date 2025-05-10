@@ -9,13 +9,13 @@ const Teams = () => {
   return (
     <Section>
       <Container>
-        <Title title='Selecione seus times de futebol' />
+        <Title title='Selecione seus times de futebol para criar a lista de favoritos:' />
         <div>
-          <p>Selecione o(s) time(s) favoritos</p>
+          <p>Selecione o(s) time(s)</p>
           <AllTeams />
         </div>
         <div className='mt-4'>
-          <p>Time(s) favoritos</p>
+          <p>Seus time(s) favorito(s)</p>
           <FavoriteTeams />
         </div>
       </Container>

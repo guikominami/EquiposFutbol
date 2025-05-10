@@ -1,4 +1,4 @@
-import type { FavoriteTeam } from '../models/models';
+import type { NewFavoriteTeam } from '../models/models';
 
 export async function fetchFavoriteTeams(
   userId: string
@@ -39,4 +39,26 @@ export async function fetchFavoriteTeams(
   }
 
   return favoriteTeams;
+}
+
+export async function createNewFavoriteTeam(favoriteTeamData: NewFavoriteTeam) {
+  console.log(favoriteTeamData);
+
+  const response = await fetch('http://localhost:7096/api/favoriteTeams', {
+    method: 'POST',
+    body: JSON.stringify(favoriteTeamData),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (!response.ok) {
+    const error = new Error('An error occurred while creating the event');
+    error.message = await response.json();
+    throw error;
+  }
+
+  const { event } = await response.json();
+
+  return event;
 }

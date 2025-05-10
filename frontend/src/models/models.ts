@@ -5,14 +5,19 @@ export type Country = {
 };
 
 export type Team = {
-  _id: number;
+  _id: string;
   name: string;
 };
 
 export type FavoriteTeam = {
-  _id: number;
+  _id: string;
   name: string;
-  countryId: number;
-  teamId: number;
+  teamId: string;
+  userId: string;
+};
+
+export type FavoriteTeamInsert = {
+  name: string;
+  teamId: string;
   userId: string;
 };
