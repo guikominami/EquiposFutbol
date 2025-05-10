@@ -62,19 +62,20 @@ docker ps
 ---------------------------------
 Mongodb
 ---------------------------------
-
+npm install mongodb
 npm i mongoose
 
 MongoDB Compass - Interface para ver os bancos de dados
 https://www.mongodb.com/try/download/compass
 
-#roda o container expondo a porta - se nao encontrar a imagem, vai baixar uma
-docker run --name mongodb6 -p 27017:27017 -e MONGODB_INITDB_ROOT_USERNAME=mongodb -e MONGODB_INITDB_ROOT_PASSWORD=password -d mongodb/mongodb-community-server:7.0.0-ubi8
+#roda o container expondo a porta - se nao encontrar a imagem, vai baixar uma. No caso, login e senha estão como mongodb e password
+docker run --name mongodb-futbol -p 27017:27017 -e MONGODB_INITDB_ROOT_USERNAME=mongodb -e MONGODB_INITDB_ROOT_PASSWORD=password -d mongodb/mongodb-community-server:7.0.0-ubi8
 
-docker run --name mongodb1 -p 27017:27017 -d mongodb/mongodb-community-server:7.0.0-ubi8
+#inicia sem login e senha
+docker run --name mongodb-futbol -p 27017:27017 -d mongodb/mongodb-community-server:7.0.0-ubi8
 
 #test the connection
-docker exec -it mongodb1 mongosh --username mongodb --password password
+docker exec -it mongodb-futbol mongosh --username mongodb --password password
 
 show dbs
 
