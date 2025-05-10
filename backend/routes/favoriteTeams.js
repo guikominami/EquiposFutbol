@@ -1,57 +1,52 @@
-const Joi = require('joi');
+const { FavoriteTeam, validate } = require('../models/favoriteTeam');
 const express = require('express');
 const router = express.Router();
+const { User } = require('../models/user');
 
-function validateTeam(team) {
-  const schema = Joi.object({
-    name: Joi.string().min(3).required(),
-  });
-
-  return schema.validate(team);
-}
-
-const favoriteTeams = [
-  { id: 1, name: 'Barcelona' },
-  { id: 2, name: 'Palmeiras' },
-];
-
-router.get('/', (req, res) => {
-  res.send(favoriteTeams);
+router.get('/', async (req, res) => {
+  res.send(await FavoriteTeam.find().sort('name'));
 });
 
-router.get('/:id', (req, res) => {
-  const team = favoriteTeams.find((t) => t.id === parseInt(req.params.id));
+router.get('/:id', async (req, res) => {
+  const user = await User.findById(req.params.id);
 
-  if (!team)
-    return res.status(404).send('The team with the given Id was not found.');
+  if (!user)
+    return res.status(400).send('The user doesn´t exist in the database.');
 
-  res.send(team);
+  var query = { userId: user };
+
+  const favoriteTeamsByUser = await FavoriteTeam.find(query);
+
+  res.send(favoriteTeamsByUser);
 });
 
-router.post('/', (req, res) => {
-  const { error } = validateTeam(req.body);
+router.post('/', async (req, res) => {
+  const { error } = validate(req.body);
 
   if (error) return res.status(400).send(error.details[0].message);
 
-  const newFavoriteTeam = {
-    id: favoriteTeams.length + 1,
+  let newFavoriteTeam = new FavoriteTeam({
     name: req.body.name,
-  };
-  favoriteTeams.push(newFavoriteTeam);
+    countryId: req.body.countryId,
+    userId: req.body.userId,
+  });
+
+  newFavoriteTeam = await newFavoriteTeam.save();
+
   res.send(newFavoriteTeam);
 });
 
 router.put('/:id', (req, res) => {
+  const { error } = validate(req.body);
+
+  if (error) return res.status(400).send(error.details[0].message);
+
   const teamToBeUpdated = favoriteTeams.find(
     (t) => t.id === parseInt(req.params.id)
   );
 
   if (!teamToBeUpdated)
     return res.status(404).send('The team with the given Id was not found.');
-
-  const { error } = validateTeam(req.body);
-
-  if (error) return res.status(400).send(error.details[0].message);
 
   teamToBeUpdated.name = req.body.name;
   res.send(teamToBeUpdated);
