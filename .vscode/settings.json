@@ -42,10 +42,10 @@
     "source.fixAll": "explicit",
     "source.fixAll.unusedImports": "never",
     "source.organizeImports": "never",
-    "source.fixAll.eslint": "never",
+    "source.fixAll.eslint": "always",
     "source.ignoreTrimWhitespace": "always"
   },
-  "cSpell.enabled": false,
+  "cSpell.enabled": true,
   "files.trimTrailingWhitespaceInRegexAndStrings": false,
   "editor.trimAutoWhitespace": false,
   "javascript.updateImportsOnFileMove.enabled": "always",
