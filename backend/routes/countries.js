@@ -13,23 +13,23 @@ router.get('/', async (req, res) => {
 });
 
 //ROTA EXTERNA
-// router.get('/external', function (req, res) {
-//   const url = 'https://v3.football.api-sports.io/countries';
+router.get('/external', function (req, res) {
+  const url = 'https://v3.football.api-sports.io/countries';
 
-//   axios({
-//     method: 'get',
-//     url,
-//     headers: {
-//       'x-rapidapi-key': privateKey,
-//       'x-rapidapi-host': 'v3.football.api-sports.io',
-//     },
-//   })
-//     .then(function (response) {
-//       res.send(JSON.stringify(response.data));
-//     })
-//     .catch(function (error) {
-//       console.log(error);
-//     });
-// });
+  axios({
+    method: 'get',
+    url,
+    headers: {
+      'x-rapidapi-key': privateKey,
+      'x-rapidapi-host': 'v3.football.api-sports.io',
+    },
+  })
+    .then(function (response) {
+      res.send(JSON.stringify(response.data));
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+});
 
 module.exports = router;
