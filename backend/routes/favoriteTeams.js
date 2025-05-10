@@ -34,15 +34,15 @@ router.post('/', async (req, res) => {
 
   const favoriteTeamsByUser = await FavoriteTeam.find(query);
 
-  if (favoriteTeamsByUser)
+  console.log(favoriteTeamsByUser.length);
+
+  if (favoriteTeamsByUser.length > 0)
     return res
       .status(400)
       .send('The team is already in the user favorite list.');
 
   const newFavoriteTeam = new FavoriteTeam({
     name: req.body.name,
-    countryId: req.body.countryId,
-    countryName: req.body.countryName,
     teamId: req.body.teamId,
     teamName: req.body.teamName,
     userId: user._id,
