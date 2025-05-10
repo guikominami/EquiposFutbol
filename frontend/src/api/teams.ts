@@ -1,7 +1,7 @@
-import type { Country } from '../models/models';
+import type { Team } from '../models/models';
 
-export async function fetchCountries(): Promise<Country[]> {
-  let countries: Country[] = [];
+export async function fetchTeams(): Promise<Team[]> {
+  let teams: Team[] = [];
 
   const options = {
     method: 'GET',
@@ -11,15 +11,10 @@ export async function fetchCountries(): Promise<Country[]> {
   };
 
   try {
-    const response = await fetch(
-      'http://localhost:7096/api/countries',
-      options
-    );
+    const response = await fetch('http://localhost:7096/api/teams', options);
 
     if (!response.ok) {
-      const error = new Error(
-        'An error occurred while fetching the countries.'
-      );
+      const error = new Error('An error occurred while fetching the teams.');
       error.message = await response.json();
       throw error;
     }
@@ -31,10 +26,10 @@ export async function fetchCountries(): Promise<Country[]> {
     //Alterar essa linha quando for para o EXTERNO
     //countries = data.response;
 
-    countries = data;
+    teams = data;
   } catch (error) {
     console.log(error);
   }
 
-  return countries;
+  return teams;
 }
