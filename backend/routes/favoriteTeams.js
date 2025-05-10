@@ -25,14 +25,30 @@ router.post('/', async (req, res) => {
 
   if (error) return res.status(400).send(error.details[0].message);
 
-  let newFavoriteTeam = new FavoriteTeam({
+  const user = await User.findById(req.body.userId);
+
+  if (!user)
+    return res.status(400).send('The user doesn´t exist in the database.');
+
+  var query = { userId: user, teamId: req.body.teamId };
+
+  const favoriteTeamsByUser = await FavoriteTeam.find(query);
+
+  if (favoriteTeamsByUser)
+    return res
+      .status(400)
+      .send('The team is already in the user favorite list.');
+
+  const newFavoriteTeam = new FavoriteTeam({
     name: req.body.name,
     countryId: req.body.countryId,
+    countryName: req.body.countryName,
     teamId: req.body.teamId,
-    userId: req.body.userId,
+    teamName: req.body.teamName,
+    userId: user._id,
   });
 
-  newFavoriteTeam = await newFavoriteTeam.save();
+  await newFavoriteTeam.save();
 
   res.send(newFavoriteTeam);
 });
@@ -43,7 +59,7 @@ router.delete('/:id', async (req, res) => {
   if (!teamToDelete)
     return res
       .status(404)
-      .send('The teram with the given Id was not found for this user.');
+      .send('The team with the given Id was not found for this user.');
 
   res.send(teamToDelete);
 });
