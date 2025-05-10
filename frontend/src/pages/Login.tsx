@@ -1,5 +1,5 @@
-import Section from '../components/Section';
-import Container from '../components/Container';
+import Section from '../components/UI/Section';
+import Container from '../components/UI/Container';
 
 const Login = () => {
   return (

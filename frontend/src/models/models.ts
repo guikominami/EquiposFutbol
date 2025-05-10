@@ -8,3 +8,11 @@ export type Team = {
   _id: number;
   name: string;
 };
+
+export type FavoriteTeam = {
+  _id: number;
+  name: string;
+  countryId: number;
+  teamId: number;
+  userId: string;
+};
