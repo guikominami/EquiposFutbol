@@ -25,16 +25,24 @@ export async function fetchTeams({ signal, searchTerm }): Promise<TeamFull[]> {
     }
 
     const data = await response.json();
+
+    if (data.errors) {
+      const error = new Error('Não foi possível encontrar times neste país.');
+      throw error;
+    }
+
+    console.log(data);
+
     //Alterar essa linha quando for para o EXTERNO
     //countries = data.response;
     teams = data.response;
 
     console.log('teams', teams);
+
+    return teams;
   } catch (error) {
     console.log(error);
   }
-
-  return teams;
 }
 
 export async function fetchFavoriteTeams(

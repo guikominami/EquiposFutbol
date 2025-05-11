@@ -6,11 +6,16 @@ import { queryClient } from '../../api/teams';
 import { fetchTeams } from '../../api/teams';
 import { createNewFavoriteTeam } from '../../api/teams';
 
-import ListContainer from '../UI/ListContainer';
-import ListItem from '../UI/ListItem';
+// import ListContainer from '../UI/ListContainer';
+// import ListItem from '../UI/ListItem';
 import Subtitle from '../UI/Subtitle';
 import LoadingIndicator from '../UI/LoadingIndicator';
 import ErrorBlock from '../UI/ErrorBlock';
+import Button from '../UI/Button';
+import Input from '../UI/Input';
+import ListAllTeams from './ListAllTeams';
+
+import { IoSearch } from 'react-icons/io5';
 
 const AllTeams = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -27,6 +32,8 @@ const AllTeams = () => {
     event.preventDefault();
 
     setSearchTerm(searchElement.current!.value);
+
+    searchElement.current!.value = '';
   }
 
   const { mutate } = useMutation({
@@ -44,15 +51,6 @@ const AllTeams = () => {
     });
   }
 
-  //ANTIGO FUNCIONANDO
-  // function handleListClick(id: number, item: string) {
-  //   createNewFavoriteTeam({
-  //     name: item,
-  //     teamId: id,
-  //     userId: '681f474ca0f85a9a33e5057a',
-  //   });
-  // }
-
   let content;
 
   if (isLoading) {
@@ -61,14 +59,18 @@ const AllTeams = () => {
 
   if (isError) {
     content = (
-      <ErrorBlock errorTitle={error.name} errorMessage={error.message} />
+      <ErrorBlock
+        errorTitle=''
+        errorMessage='Não foi possível encontrar times neste país.'
+      />
     );
   }
 
-  if (data) {
+  if (data != undefined && data.length > 0) {
     content = (
       <>
-        <ListContainer message='Selecione o(s) time(s):'>
+        <ListAllTeams data={data} onListClick={handleListClick} />
+        {/* <ListContainer message='Selecione o(s) time(s):'>
           {data
             .sort((a, b) => a.team.name.localeCompare(b.team.name))
             .map((item) => (
@@ -82,7 +84,7 @@ const AllTeams = () => {
                 hasButton={false}
               />
             ))}
-        </ListContainer>
+        </ListContainer> */}
       </>
     );
   }
@@ -93,19 +95,13 @@ const AllTeams = () => {
       <form
         defaultValue={''}
         id='search-form'
-        className='flex flex-row items-center justify-between align-middle'
+        className='flex flex-row items-center justify-start align-middle'
         onSubmit={handleSearchSubmit}
       >
-        <input
-          className='w-50 p-2 shadow outline outline-black/10'
-          ref={searchElement}
-        />
-        <button
-          className='rounded-xl p-2 m-2 shadow 
-            outline outline-black/10 bg-black/10'
-        >
-          Pesquisar
-        </button>
+        <Input searchElement={searchElement} />
+        <Button>
+          <IoSearch />
+        </Button>
       </form>
       {content}
     </div>

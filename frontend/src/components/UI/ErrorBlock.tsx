@@ -7,7 +7,7 @@ const ErrorBlock: React.FC<{ errorTitle: string; errorMessage: string }> = ({
   return (
     <div>
       <h1>{errorTitle}</h1>
-      <p>{errorMessage}</p>
+      <p className='text-amber-700'>{errorMessage}</p>
     </div>
   );
 };
