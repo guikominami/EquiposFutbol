@@ -39,3 +39,7 @@ export type NewFavoriteTeam = {
   teamId: number;
   userId: string;
 };
+
+export type Event = {
+  name: string;
+};

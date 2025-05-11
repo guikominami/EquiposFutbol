@@ -13,19 +13,20 @@ import ListItem from '../UI/ListItem';
 import Subtitle from '../UI/Subtitle';
 
 const AllTeams = () => {
-  const [searchTerm, setSearchTerm] = useState<string>();
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
-  const searchElement = useRef<HTMLFormElement>(null);
+  const searchElement = useRef<HTMLInputElement | null>(null);
 
-  const { data, isPending, isError, error } = useQuery({
-    queryKey: ['teams', { search: searchTerm }],
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ['teams', { searchTerm }],
     queryFn: ({ signal }) => fetchTeams({ signal, searchTerm }),
-    enabled: searchTerm !== undefined,
+    enabled: searchTerm !== '',
   });
 
-  function handleSearchSubmit(event: HTMLFormElement) {
+  function handleSearchSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSearchTerm(searchElement.current.value);
+
+    setSearchTerm(searchElement.current!.value);
   }
 
   function handleListClick(id: number, item: string) {
@@ -39,7 +40,7 @@ const AllTeams = () => {
 
   let content;
 
-  if (isPending && searchTerm === '') {
+  if (isLoading) {
     content = <LoadingIndicator />;
   }
 
@@ -75,6 +76,7 @@ const AllTeams = () => {
     <div>
       <Subtitle message='Digite o nome de um país:' />
       <form
+        defaultValue={''}
         id='search-form'
         className='flex flex-row items-center justify-between align-middle'
         onSubmit={handleSearchSubmit}

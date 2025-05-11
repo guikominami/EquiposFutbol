@@ -14,14 +14,14 @@ const ListFavoriteTeams: React.FC<{
   onClick: (id: string) => void;
   iconType: string;
 }> = ({ onClick, iconType }) => {
-  const { data, isPending, isError, error } = useQuery({
+  const { data, isLoading, isError, error } = useQuery({
     queryKey: ['favoriteTeams'],
     queryFn: () => fetchFavoriteTeams('681f474ca0f85a9a33e5057a'),
   });
 
   let content;
 
-  if (isPending) {
+  if (isLoading) {
     content = <LoadingIndicator />;
   }
 
