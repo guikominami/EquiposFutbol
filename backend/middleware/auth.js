@@ -1,15 +1,47 @@
-const jwt = require('jsonwebtoken');
-const config = require('config');
+const { sign, verify } = require('jsonwebtoken');
+const { compare } = require('bcryptjs');
+const { NotAuthError } = require('./errors');
 
-module.exports = function (req, res, next) {
-  const token = req.header('x-auth-token');
-  if (!token) return res.status(401).send('Access denied. No token provided.');
+const KEY = 'supersecret';
 
-  try {
-    const decoded = jwt.verify(token, config.get('futbolPrivateKey'));
-    req.user = decoded;
-    next();
-  } catch (ex) {
-    res.status(400).send('Invalid token.');
+function createJSONToken(email) {
+  return sign({ email }, KEY, { expiresIn: '1h' });
+}
+
+function validateJSONToken(token) {
+  return verify(token, KEY);
+}
+
+function isValidPassword(password, storedPassword) {
+  return compare(password, storedPassword);
+}
+
+function checkAuthMiddleware(req, res, next) {
+  if (req.method === 'OPTIONS') {
+    return next();
   }
-};
+  if (!req.headers.authorization) {
+    console.log('NOT AUTH. AUTH HEADER MISSING.');
+    return next(new NotAuthError('Not authenticated.'));
+  }
+  const authFragments = req.headers.authorization.split(' ');
+
+  if (authFragments.length !== 2) {
+    console.log('NOT AUTH. AUTH HEADER INVALID.');
+    return next(new NotAuthError('Not authenticated.'));
+  }
+  const authToken = authFragments[1];
+  try {
+    const validatedToken = validateJSONToken(authToken);
+    req.token = validatedToken;
+  } catch (error) {
+    console.log('NOT AUTH. TOKEN INVALID.');
+    return next(new NotAuthError('Not authenticated.'));
+  }
+  next();
+}
+
+exports.createJSONToken = createJSONToken;
+exports.validateJSONToken = validateJSONToken;
+exports.isValidPassword = isValidPassword;
+exports.checkAuth = checkAuthMiddleware;

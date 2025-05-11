@@ -1,9 +1,8 @@
 const { User, validate } = require('../models/user');
 const express = require('express');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const auth = require('../middleware/auth');
 const _ = require('lodash');
+const { createJSONToken, isValidPassword } = require('../middleware/auth');
 
 const router = express.Router();
 
@@ -30,11 +29,16 @@ router.post('/', async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   user.password = await bcrypt.hash(user.password, salt);
 
-  await user.save();
-
-  console.log(user);
-
-  const token = user.generateAuthToken();
+  try {
+    await user.save();
+    const authToken = createJSONToken(user.email);
+    console.log(authToken);
+    res
+      .status(201)
+      .json({ message: 'User created.', user: user, token: authToken });
+  } catch (error) {
+    console.log(error);
+  }
 
   res
     .header('x-auth-token', token)
