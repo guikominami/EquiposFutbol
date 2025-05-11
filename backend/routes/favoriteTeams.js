@@ -38,8 +38,6 @@ router.post('/', async (req, res) => {
 
   const favoriteTeamsByUser = await FavoriteTeam.find(query);
 
-  console.log(favoriteTeamsByUser.length);
-
   if (favoriteTeamsByUser.length > 0)
     return res
       .status(400)
