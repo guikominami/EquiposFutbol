@@ -5,8 +5,9 @@ const Container: React.FC<{ children: ReactNode }> = ({ children }) => {
     <div
       className='
         flex flex-col 
-        md:flex-row md:px-2 md:py-2
-        container px-6 py-4 mx-auto
+        md:px-60 md:py-8
+        container px-8 py-4 mx-auto
+        
       '
     >
       {children}

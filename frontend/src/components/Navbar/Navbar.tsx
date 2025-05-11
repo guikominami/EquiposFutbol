@@ -5,6 +5,8 @@ import { Link } from 'react-router';
 
 import { SidebarContext } from '../../context/navbar.context';
 
+import logo from '../../assets/hero-banner.png';
+
 const Navbar = () => {
   const { sidebarOpen, setSidebarOpen } = useContext(SidebarContext);
 
@@ -16,7 +18,7 @@ const Navbar = () => {
     <nav
       className='
         fixed top-0 z-3 w-full bg-white text-black 
-        flex justify-between md:px-25 items-center 
+        flex justify-between md:px-10 items-center 
         mx-auto h-18 shadow-md
         outline outline-black/5
         dark:-outline-offset-1
@@ -28,7 +30,9 @@ const Navbar = () => {
         to='/'
         onClick={handleMenuButtonClick}
       >
-        <p>Logo</p>
+        <p>
+          <img src={logo} className='w-14 md:w-20' alt='logo futbol' />
+        </p>
       </Link>
 
       <button className='mr-8 cursor-pointer' onClick={handleMenuButtonClick}>

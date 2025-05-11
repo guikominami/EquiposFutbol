@@ -5,9 +5,9 @@ import { queryClient } from './api/teams';
 
 import Header from './components/Header';
 import Home from './pages/Home';
-import Login from './pages/Login';
 import NewUser from './pages/NewUser';
 import Teams from './pages/Teams';
+import Login from './pages/Login';
 
 function App() {
   return (

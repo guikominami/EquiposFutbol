@@ -47,7 +47,7 @@ const AllTeams = () => {
     mutate({
       name: item,
       teamId: id,
-      userId: '681f474ca0f85a9a33e5057a',
+      userId: '682121f2f2f1da77066d485b',
     });
   }
 
@@ -98,7 +98,7 @@ const AllTeams = () => {
         className='flex flex-row items-center justify-start align-middle'
         onSubmit={handleSearchSubmit}
       >
-        <Input searchElement={searchElement} />
+        <Input inputId='search' inputValue={searchElement} />
         <Button>
           <IoSearch />
         </Button>

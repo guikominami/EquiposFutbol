@@ -43,3 +43,9 @@ export type NewFavoriteTeam = {
 export type Event = {
   name: string;
 };
+
+export type User = {
+  name: string;
+  email: string;
+  password: string;
+};

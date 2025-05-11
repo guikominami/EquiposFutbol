@@ -1,6 +1,9 @@
 import type { Event } from '../models/models';
 
-export async function fetchEvents({ signal, searchTerm }): Promise<Event[]> {
+export async function fetchEvents({
+  signal,
+  searchTerm,
+}): Promise<Event[] | undefined> {
   try {
     const url = 'http://localhost:7096/api/events/' + searchTerm;
 
@@ -28,6 +31,4 @@ export async function fetchEvents({ signal, searchTerm }): Promise<Event[]> {
   } catch (error) {
     console.log(error);
   }
-
-  return countries;
 }

@@ -4,7 +4,10 @@ import type { TeamFull, FavoriteTeam, NewFavoriteTeam } from '../models/models';
 
 export const queryClient = new QueryClient();
 
-export async function fetchTeams({ signal, searchTerm }): Promise<TeamFull[]> {
+export async function fetchTeams({
+  signal,
+  searchTerm,
+}): Promise<TeamFull[] | undefined> {
   let teams: TeamFull[] = [];
 
   let url = 'http://localhost:7096/api/teams';
