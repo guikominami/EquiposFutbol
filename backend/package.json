@@ -21,6 +21,8 @@
     "joi": "^17.13.3",
     "joi-objectid": "^4.0.2",
     "joi-oid": "^1.1.2",
+    "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
     "mongodb": "^6.16.0",
     "mongoose": "^8.14.2",
     "morgan": "^1.10.0"

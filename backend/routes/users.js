@@ -1,6 +1,9 @@
 const { User, validate } = require('../models/user');
 const express = require('express');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const auth = require('../middleware/auth');
+const _ = require('lodash');
 
 const router = express.Router();
 
@@ -18,18 +21,24 @@ router.post('/', async (req, res) => {
 
   if (user) return res.status(400).send('User already registered.');
 
-  const newUser = new User({
+  user = new User({
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
   });
 
-  // const salt = await bcrypt.genSalt(10);
-  // user.password = await bcrypt.hash(newUser.password, salt);
+  const salt = await bcrypt.genSalt(10);
+  user.password = await bcrypt.hash(user.password, salt);
 
-  await newUser.save();
+  await user.save();
 
-  res.send(newUser);
+  console.log(user);
+
+  const token = user.generateAuthToken();
+
+  res
+    .header('x-auth-token', token)
+    .send(_.pick(user, ['_id', 'name', 'email']));
 });
 
 router.put('/:id', async (req, res) => {

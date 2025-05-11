@@ -6,12 +6,6 @@ const config = require('config');
 
 const privateKey = config.get('privateKey-externalapi');
 
-//MOCKUP
-// router.get('/', async (req, res) => {
-//   const teams = await Team.find().sort('name');
-//   res.send(teams);
-// });
-
 router.get('/:country', function (req, res) {
   const url = `https://v3.football.api-sports.io/teams?country=${req.params.country}`;
 

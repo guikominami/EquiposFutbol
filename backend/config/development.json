@@ -1,4 +1,5 @@
 {
   "name": "Equipos Futbol - Development",
-  "db": "mongodb://localhost:27017/equiposfutbol"
+  "db": "mongodb://localhost:27017/equiposfutbol",
+  "futbolPrivateKey": ""
 }

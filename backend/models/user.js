@@ -1,4 +1,7 @@
+const config = require('config');
 const Joi = require('joi');
+const jwt = require('jsonwebtoken');
+
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
@@ -21,6 +24,11 @@ const userSchema = new mongoose.Schema({
     maxlength: 255,
   },
 });
+
+userSchema.methods.generateAuthToken = function () {
+  const token = jwt.sign({ _id: this._id }, config.get('futbolPrivateKey'));
+  return token;
+};
 
 const User = mongoose.model('User', userSchema);
 
