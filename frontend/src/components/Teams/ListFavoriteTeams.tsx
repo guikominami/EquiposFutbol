@@ -3,24 +3,21 @@ import { useQuery } from '@tanstack/react-query';
 import LoadingIndicator from '../UI/LoadingIndicator';
 import ErrorBlock from '../UI/ErrorBlock';
 
-import { fetchFavoriteTeams } from '../../api/favoriteTeams';
-
 import ListContainer from '../UI/ListContainer';
 import ListItem from '../UI/ListItem';
 
+import { fetchFavoriteTeams } from '../../api/favoriteTeams';
+
 // "681f474ca0f85a9a33e5057a"
 
-const FavoriteTeams = () => {
+const ListFavoriteTeams: React.FC<{
+  onClick: (id: string) => void;
+  iconType: string;
+}> = ({ onClick, iconType }) => {
   const { data, isPending, isError, error } = useQuery({
     queryKey: ['favoriteTeams'],
     queryFn: () => fetchFavoriteTeams('681f474ca0f85a9a33e5057a'),
   });
-
-  function handleListClick(id: string, item: string) {
-    //excluir
-    console.log('id', id);
-    console.log('item', item);
-  }
 
   let content;
 
@@ -44,7 +41,9 @@ const FavoriteTeams = () => {
               key={team._id}
               id={team._id}
               item={team.name}
-              onListClick={() => handleListClick(team._id, team.name)}
+              onListClick={() => onClick(team._id)}
+              hasButton={true}
+              iconType={iconType}
             />
           ))}
         </ListContainer>
@@ -55,4 +54,4 @@ const FavoriteTeams = () => {
   return <div>{content}</div>;
 };
 
-export default FavoriteTeams;
+export default ListFavoriteTeams;

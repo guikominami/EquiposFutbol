@@ -42,15 +42,35 @@ export async function fetchFavoriteTeams(
 }
 
 export async function createNewFavoriteTeam(favoriteTeamData: NewFavoriteTeam) {
-  console.log(favoriteTeamData);
-
-  const response = await fetch('http://localhost:7096/api/favoriteTeams', {
+  const response = await fetch('http://localhost:7096/api/favoriteTeams ', {
     method: 'POST',
     body: JSON.stringify(favoriteTeamData),
     headers: {
       'Content-Type': 'application/json',
     },
   });
+
+  if (!response.ok) {
+    const error = new Error('An error occurred while creating the event');
+    error.message = await response.json();
+    throw error;
+  }
+
+  const { event } = await response.json();
+
+  return event;
+}
+
+export async function removeFavoriteTeam(favoriteTeamId: string) {
+  const response = await fetch(
+    'http://localhost:7096/api/favoriteTeams/' + favoriteTeamId,
+    {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  );
 
   if (!response.ok) {
     const error = new Error('An error occurred while creating the event');

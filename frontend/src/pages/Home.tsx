@@ -1,31 +1,20 @@
 import Section from '../components/UI/Section';
 import Container from '../components/UI/Container';
+import Title from '../components/UI/Title';
+import ListFavoriteTeams from '../components/Teams/ListFavoriteTeams';
 
 const Home = () => {
+  function handleListClick(favoriteTeamid: string) {
+    console.log(favoriteTeamid);
+  }
+
   return (
-    <div className='relative h-10 bg-yellow-300'>
-      <div className='sticky top-0 left-0 right-0'>Times</div>
-      <div className='bg-yellow-300'>
-        <div>
-          <p>Teste 1</p>
-        </div>
-        <div>
-          <p>Teste 1</p>
-        </div>
-        <div>
-          <p>Teste 1</p>
-        </div>
-        <div>
-          <p>Teste 1</p>
-        </div>
-        <div>
-          <p>Teste 1</p>
-        </div>
-        <div>
-          <p>Teste 1</p>
-        </div>
-      </div>
-    </div>
+    <Section>
+      <Container>
+        <Title title='Veja as próximas partidas dos seus times favoritos.' />
+        <ListFavoriteTeams onClick={handleListClick} iconType='detalhe' />;
+      </Container>
+    </Section>
   );
 };
 

@@ -1,11 +1,12 @@
 import React from 'react';
 
 const ListItem: React.FC<{
-  id: number;
+  id: number | string;
   item: string;
-
-  onListClick: (id: number, name: string) => void;
-}> = ({ id, item, onListClick }) => {
+  onListClick: (id: number | string, name: string) => void;
+  hasButton: boolean;
+  iconType: string;
+}> = ({ id, item, onListClick, hasButton, iconType }) => {
   return (
     <li
       className='
@@ -18,7 +19,10 @@ const ListItem: React.FC<{
           '
       onClick={() => onListClick(id, item)}
     >
-      <div className='flex justify-between'>{item}</div>
+      <div className='flex justify-between'>
+        {item}
+        {hasButton && <button className='mr-2 font-bold'>{iconType}</button>}
+      </div>
     </li>
   );
 };
