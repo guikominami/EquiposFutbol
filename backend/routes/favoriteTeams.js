@@ -7,6 +7,10 @@ router.get('/', async (req, res) => {
   res.send(await FavoriteTeam.find().sort('name'));
 });
 
+router.get('/teamid/:id', async (req, res) => {
+  res.send(await FavoriteTeam.findById(req.params.id));
+});
+
 router.get('/:id', async (req, res) => {
   const user = await User.findById(req.params.id);
 
@@ -54,7 +58,7 @@ router.post('/', async (req, res) => {
 });
 
 router.delete('/:id', async (req, res) => {
-  const teamToDelete = await User.findByIdAndDelete(req.params.id);
+  const teamToDelete = await FavoriteTeam.findByIdAndDelete(req.params.id);
 
   if (!teamToDelete)
     return res
