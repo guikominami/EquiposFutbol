@@ -1,7 +1,7 @@
-import type { Team } from '../models/models';
+import type { TeamFull } from '../models/models';
 
-export async function fetchTeams(): Promise<Team[]> {
-  let teams: Team[] = [];
+export async function fetchTeams(): Promise<TeamFull[]> {
+  let teams: TeamFull[] = [];
 
   const options = {
     method: 'GET',
@@ -21,12 +21,11 @@ export async function fetchTeams(): Promise<Team[]> {
 
     const data = await response.json();
 
-    console.log('api', data);
-
     //Alterar essa linha quando for para o EXTERNO
     //countries = data.response;
-
     teams = data;
+
+    console.log('teams', teams);
   } catch (error) {
     console.log(error);
   }

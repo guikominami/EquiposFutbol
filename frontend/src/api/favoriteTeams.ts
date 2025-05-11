@@ -1,4 +1,4 @@
-import type { NewFavoriteTeam } from '../models/models';
+import type { FavoriteTeam, NewFavoriteTeam } from '../models/models';
 
 export async function fetchFavoriteTeams(
   userId: string

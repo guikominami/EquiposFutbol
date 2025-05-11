@@ -1,10 +1,10 @@
 import React from 'react';
 
 const ListItem: React.FC<{
-  id: string;
+  id: number;
   item: string;
 
-  onListClick: (id: string, name: string) => void;
+  onListClick: (id: number, name: string) => void;
 }> = ({ id, item, onListClick }) => {
   return (
     <li

@@ -10,14 +10,8 @@ const Teams = () => {
     <Section>
       <Container>
         <Title title='Selecione seus times de futebol para criar a lista de favoritos:' />
-        <div>
-          <p>Selecione o(s) time(s)</p>
-          <AllTeams />
-        </div>
-        <div className='mt-4'>
-          <p>Seus time(s) favorito(s)</p>
-          <FavoriteTeams />
-        </div>
+        <AllTeams />
+        <FavoriteTeams />
       </Container>
     </Section>
   );

@@ -4,20 +4,38 @@ export type Country = {
   flag: string;
 };
 
+export type TeamFull = {
+  team: Team;
+  venue: {
+    id: number;
+    name: string;
+    address: string;
+    city: string;
+    capacity: number;
+    surface: string;
+    image: string;
+  };
+};
+
 export type Team = {
-  _id: string;
+  id: number;
   name: string;
+  code: string;
+  country: string;
+  founded: number;
+  national: true;
+  logo: string;
 };
 
 export type FavoriteTeam = {
   _id: string;
   name: string;
-  teamId: string;
+  teamId: number;
   userId: string;
 };
 
-export type FavoriteTeamInsert = {
+export type NewFavoriteTeam = {
   name: string;
-  teamId: string;
+  teamId: number;
   userId: string;
 };

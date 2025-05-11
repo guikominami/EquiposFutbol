@@ -36,16 +36,19 @@ const FavoriteTeams = () => {
 
   if (data) {
     content = (
-      <ListContainer>
-        {data.map((team) => (
-          <ListItem
-            key={team._id}
-            id={team._id}
-            item={team.name}
-            onListClick={() => handleListClick(team._id, team.name)}
-          />
-        ))}
-      </ListContainer>
+      <>
+        <p className='mt-4 mb-4'>Seus time(s) favorito(s)</p>
+        <ListContainer>
+          {data.map((team) => (
+            <ListItem
+              key={team._id}
+              id={team._id}
+              item={team.name}
+              onListClick={() => handleListClick(team._id, team.name)}
+            />
+          ))}
+        </ListContainer>
+      </>
     );
   }
 

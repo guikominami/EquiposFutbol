@@ -20,7 +20,7 @@ const AllTeams = () => {
     mutationFn: createNewFavoriteTeam,
   });
 
-  function handleListClick(id: string, item: string) {
+  function handleListClick(id: number, item: string) {
     //incluir na lista de favoritos - update
 
     try {
@@ -50,16 +50,23 @@ const AllTeams = () => {
 
   if (data) {
     content = (
-      <ListContainer>
-        {data.map((team) => (
-          <ListItem
-            key={team._id}
-            id={team._id}
-            item={team.name}
-            onListClick={() => handleListClick(team._id, team.name)}
-          />
-        ))}
-      </ListContainer>
+      <>
+        <p className='mb-4'>Selecione o(s) time(s)</p>
+        <ListContainer>
+          {data
+            .sort((a, b) => a.team.name.localeCompare(b.team.name))
+            .map((item) => (
+              <ListItem
+                key={item.team.id}
+                id={item.team.id}
+                item={item.team.name}
+                onListClick={() =>
+                  handleListClick(item.team.id, item.team.name)
+                }
+              />
+            ))}
+        </ListContainer>
+      </>
     );
   }
 
