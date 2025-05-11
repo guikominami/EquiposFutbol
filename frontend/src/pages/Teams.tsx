@@ -1,14 +1,24 @@
+import { useMutation } from '@tanstack/react-query';
+import { queryClient } from '../api/teams';
+
 import Section from '../components/UI/Section';
 import Container from '../components/UI/Container';
 import Title from '../components/UI/Title';
 
 import AllTeams from '../components/Teams/AllTeams';
 import ListFavoriteTeams from '../components/Teams/ListFavoriteTeams';
-import { removeFavoriteTeam } from '../api/favoriteTeams';
+import { removeFavoriteTeam } from '../api/teams';
 
 const Teams = () => {
+  const { mutate } = useMutation({
+    mutationFn: removeFavoriteTeam,
+    onSuccess: () => {
+      queryClient.invalidateQueries();
+    },
+  });
+
   function handleListClick(favoriteTeamid: string) {
-    removeFavoriteTeam(favoriteTeamid);
+    mutate(favoriteTeamid);
   }
 
   return (

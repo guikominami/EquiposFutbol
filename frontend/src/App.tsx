@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+
+import { QueryClientProvider } from '@tanstack/react-query';
+import { queryClient } from './api/teams';
 
 import Header from './components/Header';
 import Home from './pages/Home';
@@ -8,8 +10,6 @@ import NewUser from './pages/NewUser';
 import Teams from './pages/Teams';
 
 function App() {
-  const queryClient = new QueryClient();
-
   return (
     <>
       <QueryClientProvider client={queryClient}>

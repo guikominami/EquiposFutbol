@@ -6,7 +6,7 @@ import ErrorBlock from '../UI/ErrorBlock';
 import ListContainer from '../UI/ListContainer';
 import ListItem from '../UI/ListItem';
 
-import { fetchFavoriteTeams } from '../../api/favoriteTeams';
+import { fetchFavoriteTeams } from '../../api/teams';
 
 // "681f474ca0f85a9a33e5057a"
 

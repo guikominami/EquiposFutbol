@@ -1,16 +1,16 @@
 import { useState, useRef } from 'react';
 
-import { useQuery } from '@tanstack/react-query';
-
-import LoadingIndicator from '../UI/LoadingIndicator';
-import ErrorBlock from '../UI/ErrorBlock';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { queryClient } from '../../api/teams';
 
 import { fetchTeams } from '../../api/teams';
-import { createNewFavoriteTeam } from '../../api/favoriteTeams';
+import { createNewFavoriteTeam } from '../../api/teams';
 
 import ListContainer from '../UI/ListContainer';
 import ListItem from '../UI/ListItem';
 import Subtitle from '../UI/Subtitle';
+import LoadingIndicator from '../UI/LoadingIndicator';
+import ErrorBlock from '../UI/ErrorBlock';
 
 const AllTeams = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -29,14 +29,29 @@ const AllTeams = () => {
     setSearchTerm(searchElement.current!.value);
   }
 
+  const { mutate } = useMutation({
+    mutationFn: createNewFavoriteTeam,
+    onSuccess: () => {
+      queryClient.invalidateQueries();
+    },
+  });
+
   function handleListClick(id: number, item: string) {
-    //incluir na lista de favoritos - update
-    createNewFavoriteTeam({
+    mutate({
       name: item,
       teamId: id,
       userId: '681f474ca0f85a9a33e5057a',
     });
   }
+
+  //ANTIGO FUNCIONANDO
+  // function handleListClick(id: number, item: string) {
+  //   createNewFavoriteTeam({
+  //     name: item,
+  //     teamId: id,
+  //     userId: '681f474ca0f85a9a33e5057a',
+  //   });
+  // }
 
   let content;
 
