@@ -1,3 +1,12 @@
+DOC API consultas:
+
+get all 
+"https://v3.football.api-sports.io/fixtures?live=all"
+
+próximas, não disponível no plano free
+https://v3.football.api-sports.io/fixtures?next=15
+
+
 https://dashboard.api-football.com/soccer/tester
 https://stackoverflow.com/questions/5643321/how-to-make-remote-rest-call-inside-node-js-any-curl
 

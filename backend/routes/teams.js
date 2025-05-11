@@ -50,24 +50,4 @@ router.get('/id/:id', function (req, res) {
     });
 });
 
-// router.get('/country', function (req, res) {
-//   let query = req.query.country;
-//   const url = `https://v3.football.api-sports.io/teams?country=${query}`;
-
-//   axios({
-//     method: 'get',
-//     url,
-//     headers: {
-//       'x-rapidapi-key': privateKey,
-//       'x-rapidapi-host': 'v3.football.api-sports.io',
-//     },
-//   })
-//     .then(function (response) {
-//       res.send(JSON.stringify(response.data));
-//     })
-//     .catch(function (error) {
-//       console.log(error);
-//     });
-// });
-
 module.exports = router;

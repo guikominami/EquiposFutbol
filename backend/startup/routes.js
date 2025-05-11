@@ -1,6 +1,6 @@
 const countries = require('../routes/countries');
 const teams = require('../routes/teams');
-const matches = require('../routes/matches');
+const events = require('../routes/events');
 const favoriteTeams = require('../routes/favoriteTeams');
 const users = require('../routes/users');
 const cors = require('../middleware/cors');
@@ -13,7 +13,7 @@ module.exports = function (app) {
   //Routes
   app.use('/api/countries', countries);
   app.use('/api/teams', teams);
-  app.use('/api/matches', matches);
+  app.use('/api/events', events);
   app.use('/api/favoriteTeams', favoriteTeams);
   app.use('/api/users', users);
 };
