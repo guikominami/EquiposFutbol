@@ -5,7 +5,7 @@ const ListItem: React.FC<{
   item: string;
   onListClick: (id: number | string, name: string) => void;
   hasButton: boolean;
-  iconType: string;
+  iconType?: string;
 }> = ({ id, item, onListClick, hasButton, iconType }) => {
   return (
     <li

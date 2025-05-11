@@ -1,6 +1,6 @@
 import type { TeamFull } from '../models/models';
 
-export async function fetchTeams(): Promise<TeamFull[]> {
+export async function fetchTeams({ signal, searchTerm }): Promise<TeamFull[]> {
   let teams: TeamFull[] = [];
 
   const options = {
@@ -10,8 +10,16 @@ export async function fetchTeams(): Promise<TeamFull[]> {
     },
   };
 
+  let url = 'http://localhost:7096/api/teams/';
+
+  if (searchTerm) {
+    url += 'country/' + searchTerm;
+  }
+
+  console.log(url);
+
   try {
-    const response = await fetch('http://localhost:7096/api/teams', options);
+    const response = await fetch(url, options);
 
     if (!response.ok) {
       const error = new Error('An error occurred while fetching the teams.');
@@ -23,7 +31,7 @@ export async function fetchTeams(): Promise<TeamFull[]> {
 
     //Alterar essa linha quando for para o EXTERNO
     //countries = data.response;
-    teams = data;
+    teams = data.response;
 
     console.log('teams', teams);
   } catch (error) {

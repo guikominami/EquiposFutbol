@@ -1,3 +1,5 @@
+import { useState, useRef } from 'react';
+
 import { useQuery } from '@tanstack/react-query';
 
 import LoadingIndicator from '../UI/LoadingIndicator';
@@ -8,12 +10,23 @@ import { createNewFavoriteTeam } from '../../api/favoriteTeams';
 
 import ListContainer from '../UI/ListContainer';
 import ListItem from '../UI/ListItem';
+import Subtitle from '../UI/Subtitle';
 
 const AllTeams = () => {
+  const [searchTerm, setSearchTerm] = useState<string>();
+
+  const searchElement = useRef<HTMLFormElement>(null);
+
   const { data, isPending, isError, error } = useQuery({
-    queryKey: ['teams'],
-    queryFn: fetchTeams,
+    queryKey: ['teams', { search: searchTerm }],
+    queryFn: ({ signal }) => fetchTeams({ signal, searchTerm }),
+    enabled: searchTerm !== undefined,
   });
+
+  function handleSearchSubmit(event: HTMLFormElement) {
+    event.preventDefault();
+    setSearchTerm(searchElement.current.value);
+  }
 
   function handleListClick(id: number, item: string) {
     //incluir na lista de favoritos - update
@@ -26,7 +39,7 @@ const AllTeams = () => {
 
   let content;
 
-  if (isPending) {
+  if (isPending && searchTerm === '') {
     content = <LoadingIndicator />;
   }
 
@@ -39,8 +52,7 @@ const AllTeams = () => {
   if (data) {
     content = (
       <>
-        <p className='mb-2'>Selecione o(s) time(s)</p>
-        <ListContainer>
+        <ListContainer message='Selecione o(s) time(s):'>
           {data
             .sort((a, b) => a.team.name.localeCompare(b.team.name))
             .map((item) => (
@@ -59,7 +71,28 @@ const AllTeams = () => {
     );
   }
 
-  return <div>{content}</div>;
+  return (
+    <div>
+      <Subtitle message='Digite o nome de um país:' />
+      <form
+        id='search-form'
+        className='flex flex-row items-center justify-between align-middle'
+        onSubmit={handleSearchSubmit}
+      >
+        <input
+          className='w-50 p-2 shadow outline outline-black/10'
+          ref={searchElement}
+        />
+        <button
+          className='rounded-xl p-2 m-2 shadow 
+            outline outline-black/10 bg-black/10'
+        >
+          Pesquisar
+        </button>
+      </form>
+      {content}
+    </div>
+  );
 };
 
 export default AllTeams;

@@ -12,7 +12,7 @@ const Home = () => {
     <Section>
       <Container>
         <Title title='Veja as próximas partidas dos seus times favoritos.' />
-        <ListFavoriteTeams onClick={handleListClick} iconType='detalhe' />;
+        <ListFavoriteTeams onClick={handleListClick} iconType='detalhe' />
       </Container>
     </Section>
   );

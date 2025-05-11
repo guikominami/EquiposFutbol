@@ -1,12 +1,19 @@
 import React, { type ReactNode } from 'react';
+import Subtitle from './Subtitle';
 
-const ListContainer: React.FC<{ children: ReactNode }> = ({ children }) => {
+const ListContainer: React.FC<{ children: ReactNode; message: string }> = ({
+  children,
+  message,
+}) => {
   return (
-    <div className='relative bg-black/1 h-84 overflow-y-auto'>
-      <ul className='py-2 text-lg font-light divide-y-2 divide-gray-200 cursor-pointer'>
-        {children}
-      </ul>
-    </div>
+    <>
+      <Subtitle message={message} />
+      <div className='relative h-84 overflow-y-auto'>
+        <ul className='py-2 text-lg font-light divide-y-2 divide-gray-200 cursor-pointer'>
+          {children}
+        </ul>
+      </div>
+    </>
   );
 };
 

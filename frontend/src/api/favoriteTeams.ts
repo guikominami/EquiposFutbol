@@ -28,8 +28,6 @@ export async function fetchFavoriteTeams(
 
     const data = await response.json();
 
-    console.log('api', data);
-
     //Alterar essa linha quando for para o EXTERNO
     //countries = data.response;
 

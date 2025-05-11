@@ -34,8 +34,7 @@ const ListFavoriteTeams: React.FC<{
   if (data) {
     content = (
       <>
-        <p className='mt-4 mb-4'>Seus time(s) favorito(s)</p>
-        <ListContainer>
+        <ListContainer message='Seus time(s) favorito(s):'>
           {data.map((team) => (
             <ListItem
               key={team._id}
