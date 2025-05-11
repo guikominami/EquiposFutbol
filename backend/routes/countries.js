@@ -7,13 +7,13 @@ const config = require('config');
 const privateKey = config.get('privateKey-externalapi');
 
 //MOCKUP
-router.get('/', async (req, res) => {
-  const countries = await Country.find().sort('name');
-  res.send(countries);
-});
+// router.get('/', async (req, res) => {
+//   const countries = await Country.find().sort('name');
+//   res.send(countries);
+// });
 
 //ROTA EXTERNA
-router.get('/external', function (req, res) {
+router.get('/', function (req, res) {
   const url = 'https://v3.football.api-sports.io/countries';
 
   axios({
