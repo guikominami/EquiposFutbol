@@ -5,6 +5,7 @@ const Button: React.FC<{ children: ReactNode }> = ({ children }) => {
     <button
       className='rounded-xl p-2 m-2 shadow 
             outline outline-black/10 bg-black/10'
+      type='submit'
     >
       {children}
     </button>

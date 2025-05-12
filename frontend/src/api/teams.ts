@@ -4,22 +4,18 @@ import type { TeamFull, FavoriteTeam, NewFavoriteTeam } from '../models/models';
 
 export const queryClient = new QueryClient();
 
-export async function fetchTeams({
-  signal,
-  searchTerm,
-}): Promise<TeamFull[] | undefined> {
+export async function fetchTeams(
+  signal: unknown,
+  searchTerm: string,
+  searchType: string
+): Promise<TeamFull[] | undefined> {
   let teams: TeamFull[] = [];
 
-  let url = 'http://localhost:3000/api/teams';
+  let url = 'http://localhost:3000/api/teams/' + searchType;
 
   if (searchTerm) {
-    url += '/' + searchTerm;
-    //novo teste
-    // url += '/' + '?country=';
-    // url += +searchTerm;
+    url += searchTerm;
   }
-
-  console.log(url);
 
   try {
     const response = await fetch(url, { signal: signal });

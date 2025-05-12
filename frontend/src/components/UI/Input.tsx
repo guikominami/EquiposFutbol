@@ -1,16 +1,16 @@
 import React, { type Ref } from 'react';
 
 const Input: React.FC<{
+  id: string;
   inputValue: Ref<HTMLInputElement>;
-  inputId: string;
   isPassword?: boolean;
-}> = ({ inputValue, inputId, isPassword }) => {
+}> = ({ id, inputValue, isPassword }) => {
   return (
     <input
-      id={inputId}
+      id={id}
       className='w-[100%] p-2 mr-2 shadow outline outline-black/10'
-      ref={inputValue}
       type={isPassword ? 'password' : 'text'}
+      ref={inputValue}
     />
   );
 };

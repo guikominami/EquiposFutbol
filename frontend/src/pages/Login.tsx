@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 
 import Section from '../components/UI/Section';
 import Container from '../components/UI/Container';
@@ -12,8 +12,6 @@ import { useNavigate } from 'react-router-dom';
 import { authenticate } from '../api/authentication';
 
 const Login = () => {
-  // const [isLogin, setIsLogin] = useState(true);
-
   const userEmail = useRef<HTMLInputElement | null>(null);
   const userPassword = useRef<HTMLInputElement | null>(null);
 
@@ -32,8 +30,6 @@ const Login = () => {
         const token: string = responseAuth.token;
         const userId: string = responseAuth.userId;
         const userName: string = responseAuth.userName;
-
-        // setIsLogin((isCurrentlyLogin) => !isCurrentlyLogin);
 
         localStorage.setItem('token', token);
         localStorage.setItem('userId', userId);
@@ -65,17 +61,14 @@ const Login = () => {
             onSubmit={handleSubmit}
           >
             <Subtitle message='Digite o seu nome:' />
-            <Input inputValue={userEmail} inputId='email' />
+            <Input inputValue={userEmail} id='email' />
             <Subtitle message='Digite a sua senha:' />
-            <Input inputValue={userPassword} inputId='senha' isPassword />
+            <Input inputValue={userPassword} id='senha' isPassword />
             <span className='mt-2 flex justify-between align-middle items-center'>
               <Link to='/user' className='cursor-default'>
                 Cadastro novo usuário
               </Link>
-              <Button>
-                {/* {isLogin && <Link to='/' className='cursor-default' />} */}
-                Login
-              </Button>
+              <Button>Login</Button>
             </span>
           </form>
         </div>
