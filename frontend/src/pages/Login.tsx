@@ -8,8 +8,10 @@ import Input from '../components/UI/Input';
 import Button from '../components/UI/Button';
 import { Link } from 'react-router';
 
+import { authenticate } from '../components/Authentication';
+
 const Login = () => {
-  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [isLogin, setIsLogin] = useState(true);
 
   const userEmail = useRef<HTMLInputElement | null>(null);
   const userPassword = useRef<HTMLInputElement | null>(null);
@@ -22,8 +24,22 @@ const Login = () => {
     console.log('userEmail', userEmail.current!.value);
     console.log('userPassword', userPassword.current!.value);
 
+    // const userCredencials = {
+    //   userEmail.current!.value;
+    //   userPassword.current!.value;
+    // }
+
+    const response = authenticate(
+      userEmail.current!.value,
+      userPassword.current!.value
+    );
+
+    console.log('response', response);
+
     userEmail.current!.value = '';
     userPassword.current!.value = '';
+
+    setIsLogin((isCurrentlyLogin) => !isCurrentlyLogin);
   }
 
   return (
@@ -45,7 +61,10 @@ const Login = () => {
               <Link to='/user' className='cursor-default'>
                 Cadastro novo usuário
               </Link>
-              <Button>Login</Button>
+              <Button>
+                {isLogin && <Link to='/' className='cursor-default' />}
+                Login
+              </Button>
             </span>
           </form>
         </div>
