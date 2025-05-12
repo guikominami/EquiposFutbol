@@ -6,13 +6,16 @@ const { User } = require('../models/user');
 const bcrypt = require('bcrypt');
 
 router.post('/', async (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
-  let user = await User.findOne({ email: req.body.email });
+  let user = await User.findOne({ email: email });
   if (!user) return res.status(400).send('Invalid email or password.');
 
-  const validPassword = await bcrypt.compare(req.body.password, user.password);
+  const validPassword = await bcrypt.compare(password, user.password);
   if (!validPassword) return res.status(400).send('Invalid email or password.');
 
   const token = createJSONToken(email);
