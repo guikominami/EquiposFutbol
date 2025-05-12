@@ -6,10 +6,8 @@ const config = require('config');
 
 const privateKey = config.get('privateKey-externalapi');
 
-router.get('/:country', function (req, res) {
+router.get('/bycountry/:country', function (req, res) {
   const url = `https://v3.football.api-sports.io/teams?country=${req.params.country}`;
-
-  console.log(url);
 
   axios({
     method: 'get',
@@ -27,7 +25,7 @@ router.get('/:country', function (req, res) {
     });
 });
 
-router.get('/:team', function (req, res) {
+router.get('/byteam/:team', function (req, res) {
   const url = `https://v3.football.api-sports.io/teams?search=${req.params.team}`;
 
   axios({
