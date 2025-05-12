@@ -19,7 +19,7 @@ router.post('/', async (req, res) => {
   if (!validPassword) return res.status(400).send('Invalid email or password.');
 
   const token = createJSONToken(email);
-  res.json({ token });
+  res.json({ token: token, userId: user._id, userName: user.name });
 });
 
 router.post('/signup', async (req, res, next) => {
