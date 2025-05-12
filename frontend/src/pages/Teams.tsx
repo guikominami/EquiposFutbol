@@ -12,6 +12,11 @@ import { removeFavoriteTeam } from '../api/teams';
 const Teams = () => {
   let userId = localStorage.getItem('userId');
 
+  if (userId == null) {
+    console.log('Não foi possível encontrar o id ou nome do usuário.');
+    userId = '';
+  }
+
   const { mutate } = useMutation({
     mutationFn: removeFavoriteTeam,
     onSuccess: () => {
@@ -21,11 +26,6 @@ const Teams = () => {
 
   function handleListClick(favoriteTeamid: string) {
     mutate(favoriteTeamid);
-  }
-
-  if (userId == null) {
-    console.log('Não foi possível encontrar o id ou nome do usuário.');
-    userId = '';
   }
 
   return (

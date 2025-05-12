@@ -2,7 +2,6 @@ import { useQuery } from '@tanstack/react-query';
 
 import LoadingIndicator from '../UI/LoadingIndicator';
 import ErrorBlock from '../UI/ErrorBlock';
-
 import ListContainer from '../UI/ListContainer';
 import ListItem from '../UI/ListItem';
 

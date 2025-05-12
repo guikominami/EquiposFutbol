@@ -14,6 +14,9 @@ export async function fetchTeams({
 
   if (searchTerm) {
     url += '/' + searchTerm;
+    //novo teste
+    // url += '/' + '?country=';
+    // url += +searchTerm;
   }
 
   console.log(url);

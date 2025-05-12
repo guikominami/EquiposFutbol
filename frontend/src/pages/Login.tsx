@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import { authenticate } from '../api/authentication';
 
 const Login = () => {
-  const [isLogin, setIsLogin] = useState(true);
+  // const [isLogin, setIsLogin] = useState(true);
 
   const userEmail = useRef<HTMLInputElement | null>(null);
   const userPassword = useRef<HTMLInputElement | null>(null);
@@ -33,7 +33,7 @@ const Login = () => {
         const userId: string = responseAuth.userId;
         const userName: string = responseAuth.userName;
 
-        setIsLogin((isCurrentlyLogin) => !isCurrentlyLogin);
+        // setIsLogin((isCurrentlyLogin) => !isCurrentlyLogin);
 
         localStorage.setItem('token', token);
         localStorage.setItem('userId', userId);
@@ -50,7 +50,7 @@ const Login = () => {
 
       return;
     }
-    alert('please provide a valid input');
+    alert('Digite usuário e senha!');
   }
 
   return (
@@ -73,7 +73,7 @@ const Login = () => {
                 Cadastro novo usuário
               </Link>
               <Button>
-                {isLogin && <Link to='/' className='cursor-default' />}
+                {/* {isLogin && <Link to='/' className='cursor-default' />} */}
                 Login
               </Button>
             </span>

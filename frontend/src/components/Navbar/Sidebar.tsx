@@ -16,7 +16,6 @@ const Sidebar: React.FC = () => {
                     }`}
       >
         <NavLink linkName='Home' url='/' />
-        <NavLink linkName='Usuários' url='/user' />
         <NavLink linkName='Administre seus times favoritos' url='/teams' />
       </aside>
     </>
