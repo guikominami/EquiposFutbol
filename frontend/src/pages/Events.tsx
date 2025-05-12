@@ -9,7 +9,7 @@ import ListFavoriteTeams from '../components/Teams/ListFavoriteTeams';
 
 import { fetchEvents } from '../api/events';
 
-const Home = () => {
+const Events = () => {
   const [searchTeam, setSearchTeam] = useState<string>('');
 
   const { data, isPending, isError, error } = useQuery({
@@ -24,14 +24,31 @@ const Home = () => {
 
   console.log(data);
 
+  let userId = localStorage.getItem('userId');
+  const userName = localStorage.getItem('userName');
+
+  if (userId == null || userName == null) {
+    console.log('Não foi possível encontrar o id ou nome do usuário.');
+    userId = '';
+  }
+
+  console.log(userName);
+
   return (
     <Section>
       <Container>
+        <p className='mb-4'>
+          Hola <b>{userName}</b> !
+        </p>
         <Title title='Veja as próximas partidas dos seus times favoritos.' />
-        <ListFavoriteTeams onClick={handleListClick} iconType='detalhe' />
+        <ListFavoriteTeams
+          onClick={handleListClick}
+          iconType='detalhe'
+          userId={userId}
+        />
       </Container>
     </Section>
   );
 };
 
-export default Home;
+export default Events;

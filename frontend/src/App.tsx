@@ -4,7 +4,7 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from './api/teams';
 
 import Header from './components/Header';
-import Home from './pages/Home';
+import Events from './pages/Events';
 import NewUser from './pages/NewUser';
 import Teams from './pages/Teams';
 import Login from './pages/Login';
@@ -16,8 +16,8 @@ function App() {
         <BrowserRouter>
           <Header />
           <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/login' element={<Login />} />
+            <Route path='/' element={<Login />} />
+            <Route path='/events' element={<Events />} />
             <Route path='/user' element={<NewUser />} />
             <Route path='/teams' element={<Teams />} />
           </Routes>

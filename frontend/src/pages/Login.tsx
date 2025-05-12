@@ -7,9 +7,9 @@ import Subtitle from '../components/UI/Subtitle';
 import Input from '../components/UI/Input';
 import Button from '../components/UI/Button';
 import { Link } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 import { authenticate } from '../api/authentication';
-import type { Token } from '../models/models';
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -17,21 +17,32 @@ const Login = () => {
   const userEmail = useRef<HTMLInputElement | null>(null);
   const userPassword = useRef<HTMLInputElement | null>(null);
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  const navigate = useNavigate();
+
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     if (userEmail.current!.value !== '' && userPassword.current!.value) {
-      console.log('userEmail', userEmail.current!.value);
-      console.log('userPassword', userPassword.current!.value);
+      try {
+        const responseAuth = await authenticate(
+          userEmail.current!.value,
+          userPassword.current!.value
+        );
 
-      const token: Promise<Token> = authenticate(
-        userEmail.current!.value,
-        userPassword.current!.value
-      );
+        const token: string = responseAuth.token;
+        const userId: string = responseAuth.userId;
+        const userName: string = responseAuth.userName;
 
-      if (token) {
         setIsLogin((isCurrentlyLogin) => !isCurrentlyLogin);
-        console.log(token);
+
+        localStorage.setItem('token', token);
+        localStorage.setItem('userId', userId);
+        localStorage.setItem('userName', userName);
+
+        navigate('/events');
+      } catch (error) {
+        console.log(error);
+        alert('Usuário ou senha inválidos.');
       }
 
       userEmail.current!.value = '';

@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 
 import Section from '../components/UI/Section';
 import Container from '../components/UI/Container';
@@ -10,13 +10,14 @@ import Button from '../components/UI/Button';
 import { createNewUser } from '../api/users';
 
 import { Link } from 'react-router';
+import type { User } from '../models/models';
 
 const NewUser = () => {
   const userName = useRef<HTMLInputElement | null>(null);
   const userEmail = useRef<HTMLInputElement | null>(null);
   const userPassword = useRef<HTMLInputElement | null>(null);
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     //setSearchTerm(searchElement.current!.value);
@@ -25,16 +26,20 @@ const NewUser = () => {
     console.log('userEmail', userEmail.current!.value);
     console.log('userPassword', userPassword.current!.value);
 
-    createNewUser({
+    const newUser: User = await createNewUser({
       name: userName.current!.value,
       email: userEmail.current!.value,
       password: userPassword.current!.value,
     });
 
+    console.log(newUser);
+
+    alert('Usuário criado com sucesso!');
+
     userName.current!.value = '';
     userEmail.current!.value = '';
     userPassword.current!.value = '';
-  }
+  };
 
   return (
     <Section>

@@ -50,6 +50,8 @@ export type User = {
   password: string;
 };
 
-export type Token = {
+export type Auth = {
   token: string;
+  userId: string;
+  userName: string;
 };

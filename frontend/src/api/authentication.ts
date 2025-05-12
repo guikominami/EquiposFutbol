@@ -1,9 +1,9 @@
-import type { Token } from '../models/models';
+import type { Auth } from '../models/models';
 
 export const authenticate = async (
   email: string,
   password: string
-): Promise<Token> => {
+): Promise<Auth> => {
   const authData = {
     email: email,
     password: password,
@@ -25,36 +25,12 @@ export const authenticate = async (
     console.log(response);
   }
 
-  const token: Token = await response.json();
+  const resData: Auth = await response.json();
+  const userToken: Auth = {
+    token: resData.token,
+    userId: resData.userId,
+    userName: resData.userName,
+  };
 
-  return token;
+  return userToken;
 };
-
-// export const authenticate = async (email: string, password: string) => {
-//   const authData = {
-//     email: email,
-//     password: password,
-//   };
-
-//   console.log(authData);
-
-//   const response = await fetch('http://localhost:3000/api/auth', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(authData),
-//   });
-
-//   if (response.status === 402 || response.status === 401) {
-//     return response;
-//   }
-
-//   if (!response.ok) {
-//     return response;
-//   }
-
-//   console.log(response);
-
-//   return response;
-// };

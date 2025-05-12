@@ -10,6 +10,8 @@ import ListFavoriteTeams from '../components/Teams/ListFavoriteTeams';
 import { removeFavoriteTeam } from '../api/teams';
 
 const Teams = () => {
+  let userId = localStorage.getItem('userId');
+
   const { mutate } = useMutation({
     mutationFn: removeFavoriteTeam,
     onSuccess: () => {
@@ -21,12 +23,21 @@ const Teams = () => {
     mutate(favoriteTeamid);
   }
 
+  if (userId == null) {
+    console.log('Não foi possível encontrar o id ou nome do usuário.');
+    userId = '';
+  }
+
   return (
     <Section>
       <Container>
         <Title title='Selecione seus times de futebol para criar a lista de favoritos:' />
         <AllTeams />
-        <ListFavoriteTeams onClick={handleListClick} iconType='X' />
+        <ListFavoriteTeams
+          onClick={handleListClick}
+          iconType='X'
+          userId={userId}
+        />
       </Container>
     </Section>
   );

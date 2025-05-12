@@ -1,6 +1,6 @@
 import { type User } from '../models/models';
 
-export async function createNewUser(newUser: User) {
+export const createNewUser = async (newUser: User): Promise<User> => {
   console.log(newUser);
 
   const response = await fetch('http://localhost:3000/api/users ', {
@@ -17,7 +17,7 @@ export async function createNewUser(newUser: User) {
     throw error;
   }
 
-  const { user } = await response.json();
+  const user: User = await response.json();
 
   return user;
-}
+};

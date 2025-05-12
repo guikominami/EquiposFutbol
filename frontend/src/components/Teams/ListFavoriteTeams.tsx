@@ -8,15 +8,14 @@ import ListItem from '../UI/ListItem';
 
 import { fetchFavoriteTeams } from '../../api/teams';
 
-// "6821075b6d96682b5b219894"
-
 const ListFavoriteTeams: React.FC<{
   onClick: (id: string) => void;
   iconType: string;
-}> = ({ onClick, iconType }) => {
+  userId: string;
+}> = ({ onClick, iconType, userId }) => {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['favoriteTeams'],
-    queryFn: () => fetchFavoriteTeams('682121f2f2f1da77066d485b'),
+    queryFn: () => fetchFavoriteTeams(userId),
   });
 
   let content;
