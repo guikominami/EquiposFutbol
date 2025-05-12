@@ -9,6 +9,8 @@ const privateKey = config.get('privateKey-externalapi');
 router.get('/:country', function (req, res) {
   const url = `https://v3.football.api-sports.io/teams?country=${req.params.country}`;
 
+  console.log(url);
+
   axios({
     method: 'get',
     url,
@@ -24,6 +26,44 @@ router.get('/:country', function (req, res) {
       console.log(error);
     });
 });
+
+router.get('/:team', function (req, res) {
+  const url = `https://v3.football.api-sports.io/teams?search=${req.params.team}`;
+
+  axios({
+    method: 'get',
+    url,
+    headers: {
+      'x-rapidapi-key': privateKey,
+      'x-rapidapi-host': 'v3.football.api-sports.io',
+    },
+  })
+    .then(function (response) {
+      res.send(JSON.stringify(response.data));
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+});
+
+// router.get('/:country', function (req, res) {
+//   const url = `https://v3.football.api-sports.io/teams?country=${req.params.country}`;
+
+//   axios({
+//     method: 'get',
+//     url,
+//     headers: {
+//       'x-rapidapi-key': privateKey,
+//       'x-rapidapi-host': 'v3.football.api-sports.io',
+//     },
+//   })
+//     .then(function (response) {
+//       res.send(JSON.stringify(response.data));
+//     })
+//     .catch(function (error) {
+//       console.log(error);
+//     });
+// });
 
 router.get('/id/:id', function (req, res) {
   const url = `https://v3.football.api-sports.io/teams?id=${req.params.id}`;
