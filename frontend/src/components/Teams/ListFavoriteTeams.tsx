@@ -31,6 +31,14 @@ const ListFavoriteTeams: React.FC<{
     );
   }
 
+  if (data != undefined && data.length == 0) {
+    content = (
+      <div className='mt-4'>
+        <p>Você ainda não tem times favoritos.</p>
+      </div>
+    );
+  }
+
   if (data != undefined && data.length > 0) {
     content = (
       <>

@@ -10,7 +10,7 @@ export async function fetchTeams({
 }): Promise<TeamFull[] | undefined> {
   let teams: TeamFull[] = [];
 
-  let url = 'http://localhost:7096/api/teams';
+  let url = 'http://localhost:3000/api/teams';
 
   if (searchTerm) {
     url += '/' + searchTerm;
@@ -29,18 +29,13 @@ export async function fetchTeams({
 
     const data = await response.json();
 
-    if (data.errors) {
+    if (data.errors.length > 0) {
       const error = new Error('Não foi possível encontrar times neste país.');
+      console.log(data.errors);
       throw error;
     }
 
-    console.log(data);
-
-    //Alterar essa linha quando for para o EXTERNO
-    //countries = data.response;
     teams = data.response;
-
-    console.log('teams', teams);
 
     return teams;
   } catch (error) {
@@ -48,9 +43,7 @@ export async function fetchTeams({
   }
 }
 
-export async function fetchFavoriteTeams(
-  userId: string
-): Promise<FavoriteTeam[]> {
+export async function fetchFavoriteTeams(userId: string) {
   let favoriteTeams: FavoriteTeam[] = [];
 
   const options = {
@@ -62,9 +55,11 @@ export async function fetchFavoriteTeams(
 
   try {
     const response = await fetch(
-      'http://localhost:7096/api/favoriteTeams/' + userId,
+      'http://localhost:3000/api/favoriteTeams/' + userId,
       options
     );
+
+    console.log(response);
 
     if (!response.ok) {
       const error = new Error(
@@ -76,9 +71,6 @@ export async function fetchFavoriteTeams(
 
     const data = await response.json();
 
-    //Alterar essa linha quando for para o EXTERNO
-    //countries = data.response;
-
     favoriteTeams = data;
   } catch (error) {
     console.log(error);
@@ -88,7 +80,7 @@ export async function fetchFavoriteTeams(
 }
 
 export async function createNewFavoriteTeam(favoriteTeamData: NewFavoriteTeam) {
-  const response = await fetch('http://localhost:7096/api/favoriteTeams ', {
+  const response = await fetch('http://localhost:3000/api/favoriteTeams ', {
     method: 'POST',
     body: JSON.stringify(favoriteTeamData),
     headers: {
@@ -109,7 +101,7 @@ export async function createNewFavoriteTeam(favoriteTeamData: NewFavoriteTeam) {
 
 export async function removeFavoriteTeam(favoriteTeamId: string) {
   const response = await fetch(
-    'http://localhost:7096/api/favoriteTeams/' + favoriteTeamId,
+    'http://localhost:3000/api/favoriteTeams/' + favoriteTeamId,
     {
       method: 'DELETE',
       headers: {

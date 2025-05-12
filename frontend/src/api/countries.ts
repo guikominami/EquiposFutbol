@@ -12,7 +12,7 @@ export async function fetchCountries(): Promise<Country[]> {
 
   try {
     const response = await fetch(
-      'http://localhost:7096/api/countries',
+      'http://localhost:3000/api/countries',
       options
     );
 

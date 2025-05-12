@@ -8,7 +8,8 @@ import Input from '../components/UI/Input';
 import Button from '../components/UI/Button';
 import { Link } from 'react-router';
 
-import { authenticate } from '../components/Authentication';
+import { authenticate } from '../api/authentication';
+import type { Token } from '../models/models';
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -19,27 +20,26 @@ const Login = () => {
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    //setSearchTerm(searchElement.current!.value);
+    if (userEmail.current!.value !== '' && userPassword.current!.value) {
+      console.log('userEmail', userEmail.current!.value);
+      console.log('userPassword', userPassword.current!.value);
 
-    console.log('userEmail', userEmail.current!.value);
-    console.log('userPassword', userPassword.current!.value);
+      const token: Promise<Token> = authenticate(
+        userEmail.current!.value,
+        userPassword.current!.value
+      );
 
-    // const userCredencials = {
-    //   userEmail.current!.value;
-    //   userPassword.current!.value;
-    // }
+      if (token) {
+        setIsLogin((isCurrentlyLogin) => !isCurrentlyLogin);
+        console.log(token);
+      }
 
-    const response = authenticate(
-      userEmail.current!.value,
-      userPassword.current!.value
-    );
+      userEmail.current!.value = '';
+      userPassword.current!.value = '';
 
-    console.log('response', response);
-
-    userEmail.current!.value = '';
-    userPassword.current!.value = '';
-
-    setIsLogin((isCurrentlyLogin) => !isCurrentlyLogin);
+      return;
+    }
+    alert('please provide a valid input');
   }
 
   return (

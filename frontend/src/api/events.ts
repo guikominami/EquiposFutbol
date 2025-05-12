@@ -5,7 +5,7 @@ export async function fetchEvents({
   searchTerm,
 }): Promise<Event[] | undefined> {
   try {
-    const url = 'http://localhost:7096/api/events/' + searchTerm;
+    const url = 'http://localhost:3000/api/events/' + searchTerm;
 
     console.log(url);
 

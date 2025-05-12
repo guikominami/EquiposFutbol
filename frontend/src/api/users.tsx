@@ -3,7 +3,7 @@ import { type User } from '../models/models';
 export async function createNewUser(newUser: User) {
   console.log(newUser);
 
-  const response = await fetch('http://localhost:7096/api/users ', {
+  const response = await fetch('http://localhost:3000/api/users ', {
     method: 'POST',
     body: JSON.stringify(newUser),
     headers: {
