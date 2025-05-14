@@ -15,7 +15,9 @@ router.get('/:id', async (req, res) => {
   const user = await User.findById(req.params.id);
 
   if (!user)
-    return res.status(400).send('The user doesn´t exist in the database.');
+    return res
+      .status(400)
+      .send({ response: 'The user doesn´t exist in the database.' });
 
   var query = { userId: user };
 
