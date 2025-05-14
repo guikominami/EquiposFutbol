@@ -3,11 +3,10 @@ const config = require('config');
 
 module.exports = function () {
   mongoose;
-  const db = config.get('db');
-  console.log(process.env.db);
+  const db = process.env.MONGODB_URL;
 
   mongoose
-    .connect(db, { useNewUrlParser: true })
+    .connect(db)
     .then(() => console.log(`Connected to ${db}...`))
     .catch((err) => console.log('Could not connect to MongoDB...', err));
 };

@@ -77,8 +77,12 @@ npm i mongoose
 MongoDB Compass - Interface para ver os bancos de dados
 https://www.mongodb.com/try/download/compass
 
+
 #roda o container expondo a porta - se nao encontrar a imagem, vai baixar uma. No caso, login e senha estão como mongodb e password
 docker run --name mongodb-futbol -p 27017:27017 -e MONGODB_INITDB_ROOT_USERNAME=mongodb -e MONGODB_INITDB_ROOT_PASSWORD=password -d mongodb/mongodb-community-server:7.0.0-ubi8
+
+//Criar variable de ambiente: MONGODB_URL
+//mongodb://mongodb:password@localhost:27017/equiposfutbol?authSource=admin
 
 #inicia sem login e senha
 docker run --name mongodb-futbol -p 27017:27017 -d mongodb/mongodb-community-server:7.0.0-ubi8
