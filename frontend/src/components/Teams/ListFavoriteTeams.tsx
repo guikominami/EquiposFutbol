@@ -8,7 +8,7 @@ import ListItem from '../UI/ListItem';
 import { fetchFavoriteTeams } from '../../api/teams';
 
 const ListFavoriteTeams: React.FC<{
-  onClick: (id: string) => void;
+  onClick: (id: string, teamid: number) => void;
   iconType: string;
   userId: string;
 }> = ({ onClick, iconType, userId }) => {
@@ -46,7 +46,7 @@ const ListFavoriteTeams: React.FC<{
               key={team._id}
               id={team._id}
               item={team.name}
-              onListClick={() => onClick(team._id)}
+              onListClick={() => onClick(team._id, team.teamId)}
               hasButton={true}
               iconType={iconType}
             />

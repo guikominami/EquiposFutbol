@@ -23,8 +23,6 @@ const AllTeams = () => {
 
   let userId = localStorage.getItem('userId');
 
-  console.log('userId', userId);
-
   if (userId == null) {
     console.log('Não foi possível encontrar o id ou nome do usuário.');
     userId = '';

@@ -15,7 +15,7 @@ const Sidebar: React.FC = () => {
                       sidebarOpen ? 'left-0' : '-left-100'
                     }`}
       >
-        <NavLink linkName='Eventos dos seus times favoritos' url='/' />
+        <NavLink linkName='Eventos dos seus times favoritos' url='/events' />
         <NavLink linkName='Administre seus times favoritos' url='/teams' />
       </aside>
     </>

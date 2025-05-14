@@ -1,9 +1,9 @@
+//TIPAR UMA RESPOSTA do tipo json
+
 export async function requestData(url: string, searchTerm?: string) {
   if (searchTerm) {
     url += searchTerm;
   }
-
-  console.log(url);
 
   try {
     // const response = await fetch(url, { signal: signal });
