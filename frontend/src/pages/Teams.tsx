@@ -6,7 +6,7 @@ import Container from '../components/UI/Container';
 import Title from '../components/UI/Title';
 
 import AllTeams from '../components/Teams/AllTeams';
-import ListFavoriteTeams from '../components/Teams/ListFavoriteTeams';
+import ListFavoriteTeams from '../components/Teams/FavoriteTeamsList';
 import { removeFavoriteTeam } from '../api/teams';
 
 const Teams = () => {

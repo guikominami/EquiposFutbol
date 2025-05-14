@@ -1,4 +1,4 @@
-import type { Auth } from '../models/models';
+import type { Auth } from '../models/teamModels';
 
 export const authenticate = async (
   email: string,
@@ -17,12 +17,12 @@ export const authenticate = async (
     body: JSON.stringify(authData),
   });
 
-  if (response.status === 402 || response.status === 401) {
-    console.log(response);
-  }
-
   if (!response.ok) {
-    console.log(response);
+    const error = new Error(
+      'An error occurred while fetching the user favorite teams.'
+    );
+    error.message = await response.json();
+    throw error;
   }
 
   const resData: Auth = await response.json();

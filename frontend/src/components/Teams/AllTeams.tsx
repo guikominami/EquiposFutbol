@@ -6,7 +6,7 @@ import { fetchTeams } from '../../api/teams';
 
 import LoadingIndicator from '../UI/LoadingIndicator';
 import ErrorBlock from '../UI/ErrorBlock';
-import ListAllTeams from './ListAllTeams';
+import AllTeamsList from './AllTeamsList';
 
 import Form from './SearchTeamForm';
 
@@ -45,7 +45,7 @@ const AllTeams = () => {
   }
 
   if (data != undefined && data.length > 0) {
-    content = <ListAllTeams data={data} userId={userId} />;
+    content = <AllTeamsList data={data} userId={userId} />;
   }
 
   function handleSearchTeam(searchTeam: string) {

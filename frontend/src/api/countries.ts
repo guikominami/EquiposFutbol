@@ -1,4 +1,4 @@
-import type { Country } from '../models/models';
+import type { Country } from '../models/teamModels';
 
 export async function fetchCountries(): Promise<Country[]> {
   let countries: Country[] = [];

@@ -18,7 +18,6 @@ export async function requestData(url: string, searchTerm?: string) {
     }
 
     const data = await response.json();
-    console.log(data);
 
     return data.response;
   } catch (error) {

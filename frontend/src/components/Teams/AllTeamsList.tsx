@@ -4,7 +4,7 @@ import { createNewFavoriteTeam } from '../../api/teams';
 
 import ListContainer from '../UI/ListContainer';
 import ListItem from '../UI/ListItem';
-import { type TeamFull } from '../../models/models';
+import { type TeamFull } from '../../models/teamModels';
 
 const ListAllTeams: React.FC<{
   data: TeamFull[];

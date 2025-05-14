@@ -7,7 +7,7 @@ import ListItem from '../UI/ListItem';
 
 import { fetchFavoriteTeams } from '../../api/teams';
 
-const ListFavoriteTeams: React.FC<{
+const FavoriteTeamsList: React.FC<{
   onClick: (id: string, teamid: number) => void;
   iconType: string;
   userId: string;
@@ -59,4 +59,4 @@ const ListFavoriteTeams: React.FC<{
   return <div>{content}</div>;
 };
 
-export default ListFavoriteTeams;
+export default FavoriteTeamsList;

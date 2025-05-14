@@ -10,7 +10,7 @@ import Button from '../components/UI/Button';
 import { createNewUser } from '../api/users';
 
 import { Link } from 'react-router';
-import type { User } from '../models/models';
+import type { User } from '../models/userModels';
 
 const NewUser = () => {
   const userName = useRef<HTMLInputElement | null>(null);
@@ -53,11 +53,11 @@ const NewUser = () => {
             onSubmit={handleSubmit}
           >
             <Subtitle message='Digite o seu nome:' />
-            <Input inputValue={userName} inputId='name' />
+            <Input inputValue={userName} id='name' />
             <Subtitle message='Digite o seu email:' />
-            <Input inputValue={userEmail} inputId='email' />
+            <Input inputValue={userEmail} id='email' />
             <Subtitle message='Digite a sua senha:' />
-            <Input inputValue={userPassword} inputId='senha' isPassword />
+            <Input inputValue={userPassword} id='senha' isPassword />
             <span className='mt-2 flex justify-between align-middle items-center'>
               <Link to='/' className='cursor-default'>
                 Já tem usuário? Efetue login.

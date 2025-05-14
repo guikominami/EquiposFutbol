@@ -3,7 +3,12 @@ import { QueryClient } from '@tanstack/react-query';
 //Precisa desse export para automaticamente refazer a busca de times favoritos após a atualização em createNewFavoriteTeam
 export const queryClient = new QueryClient();
 
-import type { TeamFull, FavoriteTeam, NewFavoriteTeam } from '../models/models';
+import type {
+  TeamFull,
+  FavoriteTeam,
+  NewFavoriteTeam,
+} from '../models/teamModels';
+
 import { requestData } from './requestApi';
 
 export async function fetchTeams(

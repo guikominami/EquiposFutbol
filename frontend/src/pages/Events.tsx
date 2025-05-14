@@ -3,8 +3,8 @@ import { useState } from 'react';
 import Section from '../components/UI/Section';
 import Container from '../components/UI/Container';
 import Title from '../components/UI/Title';
-import ListFavoriteTeams from '../components/Teams/ListFavoriteTeams';
-import TeamEvents from '../components/Teams/TeamEvents';
+import FavoriteTeamsList from '../components/Teams/FavoriteTeamsList';
+import TeamEvents from '../components/Events/TeamEvents';
 
 const Events = () => {
   const [teamIdSelected, setTeamIdSelected] = useState<number>(0);
@@ -33,7 +33,7 @@ const Events = () => {
           Hola <b>{userName}</b> !
         </p>
         <Title title='Veja as próximas partidas dos seus times favoritos.' />
-        <ListFavoriteTeams
+        <FavoriteTeamsList
           onClick={handleListClick}
           iconType='detalhe'
           userId={userId}
