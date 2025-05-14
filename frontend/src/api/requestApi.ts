@@ -19,6 +19,11 @@ export async function requestData(url: string, searchTerm?: string) {
 
     const data = await response.json();
 
+    if (data.errors) {
+      const error = new Error(data.error);
+      throw error;
+    }
+
     return data.response;
   } catch (error) {
     console.error('Error fetching data', error);

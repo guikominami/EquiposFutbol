@@ -7,10 +7,13 @@ import LoadingIndicator from '../UI/LoadingIndicator';
 import ErrorBlock from '../UI/ErrorBlock';
 import Title from '../UI/Title';
 
+import TeamEventsList from './TeamEventsList';
+
 const TeamEvents: React.FC<{
   teamId: number;
   isOpen: boolean;
-}> = ({ teamId, isOpen }) => {
+  onClosePage: () => void;
+}> = ({ teamId, isOpen, onClosePage }) => {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['teamsEvents', { teamId }],
     // queryFn: ({ signal }) => fetchTeams(signal, searchTerm, searchType),
@@ -34,11 +37,10 @@ const TeamEvents: React.FC<{
   }
 
   if (data != undefined && data.length > 0) {
-    console.log(data[0]);
-
     content = (
       <div id='teamDetail' className='p-4'>
         <p>TeamId: {teamId}</p>
+        <TeamEventsList data={data} />
       </div>
     );
   }
@@ -48,11 +50,11 @@ const TeamEvents: React.FC<{
       <aside
         className={`h-full fixed z-10 top-0 w-[100%] md:w-[20%] border-r bg-white 
                     duration-500 ease-in-out ${
-                      isOpen ? 'left-0' : '-left-100'
+                      isOpen ? 'right-0' : '-right-100'
                     }`}
       >
         <div className='flex px-4 mt-4 justify-end '>
-          <AiOutlineClose size={30} />
+          <AiOutlineClose size={30} onClick={onClosePage} />
         </div>
 
         <div className='p-6'>

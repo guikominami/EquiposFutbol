@@ -25,11 +25,7 @@ const Navbar = () => {
         dark:outline-white/10
       '
     >
-      <Link
-        className='ml-8 max-w-[60px]'
-        to='/'
-        onClick={handleMenuButtonClick}
-      >
+      <Link className='ml-8 max-w-[60px]' to='/'>
         <p>
           <img src={logo} className='w-14 md:w-20' alt='logo futbol' />
         </p>

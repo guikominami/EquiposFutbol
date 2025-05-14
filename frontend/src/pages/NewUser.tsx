@@ -59,7 +59,7 @@ const NewUser = () => {
             <Subtitle message='Digite a sua senha:' />
             <Input inputValue={userPassword} id='senha' isPassword />
             <span className='mt-2 flex justify-between align-middle items-center'>
-              <Link to='/' className='cursor-default'>
+              <Link to='/' className='cursor-default text-blue-600 underline'>
                 Já tem usuário? Efetue login.
               </Link>
               <Button>Salvar</Button>

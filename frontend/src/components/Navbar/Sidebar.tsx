@@ -12,11 +12,11 @@ const Sidebar: React.FC = () => {
       <aside
         className={`h-full fixed z-10 top-18 w-[100%] md:w-[20%] border-r bg-black/95 
                     duration-500 ease-in-out ${
-                      sidebarOpen ? 'left-0' : '-left-100'
+                      sidebarOpen ? 'right-0' : '-right-100'
                     }`}
       >
-        <NavLink linkName='Eventos dos seus times favoritos' url='/events' />
-        <NavLink linkName='Administre seus times favoritos' url='/teams' />
+        <NavLink linkName='Próximos Eventos' url='/events' />
+        <NavLink linkName='Times favoritos' url='/teams' />
       </aside>
     </>
   );

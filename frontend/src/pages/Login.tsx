@@ -65,7 +65,10 @@ const Login = () => {
             <Subtitle message='Digite a sua senha:' />
             <Input inputValue={userPassword} id='senha' isPassword />
             <span className='mt-2 flex justify-between align-middle items-center'>
-              <Link to='/user' className='cursor-default'>
+              <Link
+                to='/user'
+                className='cursor-default text-blue-600 underline'
+              >
                 Cadastro novo usuário
               </Link>
               <Button>Login</Button>

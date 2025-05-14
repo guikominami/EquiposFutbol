@@ -9,9 +9,11 @@ import type {
   NewFavoriteTeam,
 } from '../models/teamModels';
 
+import type { EventsTeam } from '../models/eventsModels';
+
 import { requestData } from './requestApi';
 
-export async function fetchTeams(
+export function fetchTeams(
   searchTerm: string,
   searchType: string
 ): Promise<TeamFull[] | undefined> {
@@ -23,7 +25,7 @@ export async function fetchTeams(
   return data;
 }
 
-export async function fetchFavoriteTeams(
+export function fetchFavoriteTeams(
   searchTerm: string
 ): Promise<FavoriteTeam[] | undefined> {
   const url = 'http://localhost:3000/api/favoriteTeams/';
@@ -33,9 +35,9 @@ export async function fetchFavoriteTeams(
   return data;
 }
 
-export async function fetchTeamNextEvents(
+export function fetchTeamNextEvents(
   searchTerm: number
-): Promise<Event[] | undefined> {
+): Promise<EventsTeam[] | undefined> {
   const url = 'http://localhost:3000/api/events/next/';
 
   const response = requestData(url, searchTerm.toString());
@@ -44,9 +46,9 @@ export async function fetchTeamNextEvents(
   return data;
 }
 
-export async function fetchTeamAllEvents(
+export function fetchTeamAllEvents(
   searchTerm: number
-): Promise<Event[] | undefined> {
+): Promise<EventsTeam[] | undefined> {
   const url = 'http://localhost:3000/api/events/liveall/';
 
   const response = requestData(url, searchTerm.toString());

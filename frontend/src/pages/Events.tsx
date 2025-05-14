@@ -21,8 +21,11 @@ const Events = () => {
 
   //AQUI POSSO SUbstituir o favorite tema pelo team recebendo apenas 1 parametro transformando em numbero
   function handleListClick(favoriteTeamid: string, teamId: number) {
-    console.log(teamId);
     setTeamIdSelected(teamId);
+    setOpenTeamEvents((state) => !state);
+  }
+
+  function handleClosePage() {
     setOpenTeamEvents((state) => !state);
   }
 
@@ -39,7 +42,11 @@ const Events = () => {
           userId={userId}
         />
         {openTeamEvents && (
-          <TeamEvents teamId={teamIdSelected} isOpen={openTeamEvents} />
+          <TeamEvents
+            teamId={teamIdSelected}
+            isOpen={openTeamEvents}
+            onClosePage={handleClosePage}
+          />
         )}
       </Container>
     </Section>

@@ -18,7 +18,7 @@ const NavLink: React.FC<{ linkName: string; url: string }> = ({
         className='md:text-lg focus:outline-none
                   data-[active]:text-black
                   data-[focus]:text-black 
-                  data-[hover]:text-black'
+                  data-[hover]:text-black uppercase'
         to={url}
         onClick={handleMenuClick}
       >

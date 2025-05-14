@@ -1,7 +1,16 @@
-// export type Fixture = {
-//   date: Date
-//   timestamp: Time
-// }
+export type EventsTeam = {
+  fixture: Fixture;
+  league: League;
+  teams: TeamsPlay;
+};
+
+export type Fixture = {
+  date: string;
+  id: number;
+  timestamp: number;
+  timeZone: string;
+  venue: City;
+};
 
 export type League = {
   league: string;
@@ -25,4 +34,14 @@ export type TeamPlay = {
   logo: string;
   name: string;
   winner: string;
+};
+
+export type Venue = {
+  venue: City;
+};
+
+export type City = {
+  city: string;
+  id: number;
+  name: string;
 };
