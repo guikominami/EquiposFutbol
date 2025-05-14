@@ -1,3 +1,4 @@
 {
-  "name": "Equipos Futbol - Development"
+  "name": "Equipos Futbol - Development",
+  "db": "MONGOD_CONNECT_URI_DEV"
 }

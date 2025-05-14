@@ -3,7 +3,9 @@ const config = require('config');
 
 module.exports = function () {
   mongoose;
-  const db = process.env.MONGODB_URL;
+
+  const environmentVariableName = config.get('db');
+  const db = process.env[environmentVariableName];
 
   mongoose
     .connect(db)

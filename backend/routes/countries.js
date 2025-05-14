@@ -4,15 +4,8 @@ const express = require('express');
 const router = express.Router();
 const config = require('config');
 
-const privateKey = config.get('privateKey-externalapi');
+const { getEnvironmentVariable } = require('../utils/environmentVariable');
 
-//MOCKUP
-// router.get('/', async (req, res) => {
-//   const countries = await Country.find().sort('name');
-//   res.send(countries);
-// });
-
-//ROTA EXTERNA
 router.get('/', function (req, res) {
   const url = 'https://v3.football.api-sports.io/countries';
 
@@ -20,7 +13,7 @@ router.get('/', function (req, res) {
     method: 'get',
     url,
     headers: {
-      'x-rapidapi-key': privateKey,
+      'x-rapidapi-key': getEnvironmentVariable('privateKey-externalapi'),
       'x-rapidapi-host': 'v3.football.api-sports.io',
     },
   })
