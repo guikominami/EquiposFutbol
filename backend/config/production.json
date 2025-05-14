@@ -1,5 +1,5 @@
 {
   "name": "Equipos Futbol - Production",
-  "db": "mongodb://localhost:27017/equiposfutbol&directConnection=True",
+  "db": "mongodb://mongodb:password@localhost:27017/equiposfutbol?authSource=admin",
   "futbolPrivateKey": ""
 }
