@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import type { TokenLogin } from '../models/userModels';
+import type { TokenLogin } from '../../models/userModels';
 
 export const getToken = () => {
   const tokenString: string | null = sessionStorage.getItem('token');
@@ -9,9 +8,6 @@ export const getToken = () => {
   }
 };
 
-export const saveToken = (userToken: TokenLogin) => {
-  const [token, setToken] = useState(getToken());
-
+export const saveToken = (userToken: string) => {
   sessionStorage.setItem('token', JSON.stringify(userToken));
-  setToken(userToken.token);
 };

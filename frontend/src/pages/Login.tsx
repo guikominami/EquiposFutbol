@@ -8,7 +8,7 @@ import Input from '../components/UI/Input';
 import Button from '../components/UI/Button';
 import { Link } from 'react-router';
 import { useNavigate } from 'react-router-dom';
-import { useToken } from '../components/Token';
+import { saveToken } from '../components/Auth/Token';
 
 import { authenticate } from '../api/authentication';
 
@@ -32,11 +32,10 @@ const Login = () => {
         const userId: string = responseAuth.userId;
         const userName: string = responseAuth.userName;
 
-        localStorage.setItem('token', token);
         localStorage.setItem('userId', userId);
         localStorage.setItem('userName', userName);
 
-        useToken(token);
+        saveToken(token);
 
         navigate('/events');
       } catch (error) {
