@@ -21,7 +21,8 @@ router.get('/:id', async (req, res) => {
 
   const favoriteTeamsByUser = await FavoriteTeam.find(query);
 
-  res.send(favoriteTeamsByUser);
+  //response foi incluído para manter o mesmo padrão da api de futebol
+  res.send({ response: favoriteTeamsByUser });
 });
 
 router.post('/', async (req, res) => {
