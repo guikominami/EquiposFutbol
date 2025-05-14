@@ -31,7 +31,7 @@ export function fetchFavoriteTeams(
   const url = 'http://localhost:3000/api/favoriteTeams/';
 
   const data = requestData(url, searchTerm);
-
+  console.log(data);
   return data;
 }
 

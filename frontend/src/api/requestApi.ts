@@ -9,11 +9,15 @@ export async function requestData(url: string, searchTerm?: string) {
     // const response = await fetch(url, { signal: signal });
     const response = await fetch(url);
 
+    console.log(response);
+
     if (!response.ok) {
       const error = new Error(
         'An error occurred while fetching the user favorite teams.'
       );
-      error.message = await response.json();
+
+      const message = await response.json();
+      console.log(message);
       throw error;
     }
 
@@ -27,5 +31,6 @@ export async function requestData(url: string, searchTerm?: string) {
     return data.response;
   } catch (error) {
     console.error('Error fetching data', error);
+    return [];
   }
 }

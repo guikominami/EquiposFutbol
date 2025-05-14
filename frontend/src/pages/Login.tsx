@@ -1,4 +1,6 @@
-import { useRef } from 'react';
+import { useRef, useContext } from 'react';
+import { Link } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 import Section from '../components/UI/Section';
 import Container from '../components/UI/Container';
@@ -6,17 +8,18 @@ import Title from '../components/UI/Title';
 import Subtitle from '../components/UI/Subtitle';
 import Input from '../components/UI/Input';
 import Button from '../components/UI/Button';
-import { Link } from 'react-router';
-import { useNavigate } from 'react-router-dom';
-import { saveToken } from '../components/Auth/Token';
 
 import { authenticate } from '../api/authentication';
+
+import { UserDataContext } from '../context/user.context';
 
 const Login = () => {
   const userEmail = useRef<HTMLInputElement | null>(null);
   const userPassword = useRef<HTMLInputElement | null>(null);
 
   const navigate = useNavigate();
+
+  const { setUserCredentials } = useContext(UserDataContext);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -28,14 +31,7 @@ const Login = () => {
           userPassword.current!.value
         );
 
-        const token: string = responseAuth.token;
-        const userId: string = responseAuth.userId;
-        const userName: string = responseAuth.userName;
-
-        localStorage.setItem('userId', userId);
-        localStorage.setItem('userName', userName);
-
-        saveToken(token);
+        setUserCredentials(responseAuth);
 
         navigate('/events');
       } catch (error) {

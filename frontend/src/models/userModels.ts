@@ -4,7 +4,7 @@ export type User = {
   password: string;
 };
 
-export type Auth = {
+export type UserCredencials = {
   token: string;
   userId: string;
   userName: string;

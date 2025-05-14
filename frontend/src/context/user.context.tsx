@@ -6,22 +6,26 @@ import React, {
   useState,
 } from 'react';
 
-import { Auth } from '../models/teamModels';
+import type { UserCredencials } from '../models/userModels';
 
-export type UserCredencials = {
-  userCredentials: Auth;
-  setUserCredentials: Dispatch<SetStateAction<boolean>>;
+export type UserData = {
+  userCredentials: UserCredencials;
+  setUserCredentials: Dispatch<SetStateAction<UserCredencials>>;
 };
 
-export const UserCredentialContext = createContext<UserCredencials>({
-  userCredentials: {},
+export const UserDataContext = createContext<UserData>({
+  userCredentials: { token: '', userId: '', userName: '' },
   setUserCredentials: () => {},
 });
 
-export const UserCredentialContextProvider: React.FC<{
+export const UserDataContextProvider: React.FC<{
   children: ReactNode;
 }> = ({ children }) => {
-  const [userCredentials, setUserCredentials] = useState<Auth>({});
+  const [userCredentials, setUserCredentials] = useState<UserCredencials>({
+    token: '',
+    userId: '',
+    userName: '',
+  });
 
   const ctxValue = {
     userCredentials: userCredentials,
@@ -29,8 +33,8 @@ export const UserCredentialContextProvider: React.FC<{
   };
 
   return (
-    <UserCredentialContext.Provider value={ctxValue}>
+    <UserDataContext.Provider value={ctxValue}>
       {children}
-    </UserCredentialContext.Provider>
+    </UserDataContext.Provider>
   );
 };

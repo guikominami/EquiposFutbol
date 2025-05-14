@@ -17,6 +17,8 @@ const FavoriteTeamsList: React.FC<{
     queryFn: () => fetchFavoriteTeams(userId),
   });
 
+  console.log('data', data);
+
   let content;
 
   if (isLoading) {
@@ -29,7 +31,7 @@ const FavoriteTeamsList: React.FC<{
     );
   }
 
-  if (data != undefined && data.length == 0) {
+  if (data == undefined || data.length == 0) {
     content = (
       <div className='mt-4'>
         <p>Você ainda não tem times favoritos.</p>

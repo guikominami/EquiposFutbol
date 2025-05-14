@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
 import Section from '../components/UI/Section';
 import Container from '../components/UI/Container';
@@ -6,13 +6,18 @@ import Title from '../components/UI/Title';
 import FavoriteTeamsList from '../components/Teams/FavoriteTeamsList';
 import TeamEvents from '../components/Events/TeamEvents';
 
+import { UserDataContext } from '../context/user.context';
+
 const Events = () => {
   const [teamIdSelected, setTeamIdSelected] = useState<number>(0);
   const [openTeamEvents, setOpenTeamEvents] = useState<boolean>(false);
 
   //MUDAR PARA UM USE CONTEXT COM O ID
+  const { userCredentials } = useContext(UserDataContext);
   let userId = localStorage.getItem('userId');
   const userName = localStorage.getItem('userName');
+
+  console.log('userCredentials', userCredentials);
 
   if (userId == null || userName == null) {
     console.log('Não foi possível encontrar o id ou nome do usuário.');
