@@ -1,3 +1,5 @@
 {
-  "name": "Equipos Futbol - Production"
+  "name": "Equipos Futbol - Production",
+  "db": "mongodb://localhost:27017/equiposfutbol&directConnection=True",
+  "futbolPrivateKey": ""
 }

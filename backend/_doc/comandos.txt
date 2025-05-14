@@ -139,6 +139,15 @@ db.posts.deleteOne({ title: "Post Title 5" })
 db.posts.deleteMany({ category: "Technology" })
 
 ---------------------------------
+Node Docker
+---------------------------------
+Executar os comandos de dentro do backend em NodeJs:
+docker init
+
+Os arquivos serao criados: 
+docker compose up --build
+
+---------------------------------
 GIT
 ---------------------------------
 git push -u origin main
