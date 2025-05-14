@@ -9,3 +9,7 @@ export type Auth = {
   userId: string;
   userName: string;
 };
+
+export type TokenLogin = {
+  token: string;
+};

@@ -8,6 +8,7 @@ import Input from '../components/UI/Input';
 import Button from '../components/UI/Button';
 import { Link } from 'react-router';
 import { useNavigate } from 'react-router-dom';
+import { useToken } from '../components/Token';
 
 import { authenticate } from '../api/authentication';
 
@@ -34,6 +35,8 @@ const Login = () => {
         localStorage.setItem('token', token);
         localStorage.setItem('userId', userId);
         localStorage.setItem('userName', userName);
+
+        useToken(token);
 
         navigate('/events');
       } catch (error) {
