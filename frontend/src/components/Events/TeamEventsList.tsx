@@ -1,23 +1,22 @@
 import { useState } from 'react';
 
+import { GoArrowDown } from 'react-icons/go';
+import { GoArrowUp } from 'react-icons/go';
+
 import type { EventsTeam } from '../../models/eventsModels';
 import ParagraphList from '../UI/ParagraphList';
 
 import TeamEventsListDetails from './TeamEventsListDetails';
 
-// value={new Intl.DateTimeFormat('en-GB', {
-//   year: 'numeric',
-//   month: 'long',
-//   day: '2-digit',
-// }).format(event.fixture.date)}
-
 const TeamEventsList: React.FC<{ data: EventsTeam[] }> = ({ data }) => {
   const [openDetails, setOpenDetails] = useState<boolean>(false);
+  const [indexDetail, setIndexDetail] = useState<number>();
 
   console.log(openDetails);
 
-  function handleListDetailClick() {
+  function handleListDetailClick(index: number) {
     setOpenDetails((state) => !state);
+    setIndexDetail(index);
   }
 
   return (
@@ -25,19 +24,18 @@ const TeamEventsList: React.FC<{ data: EventsTeam[] }> = ({ data }) => {
       {data.map((event, index) => (
         <li className='p-4 bg-black/10 mb-2 border-b-2' key={index}>
           <div className='flex flex-col'>
-            <div className='flex flex-row'>
+            <div className='flex flex-row justify-between'>
               <div>
-                <ParagraphList
-                  description='Data:'
-                  value={Date(event.fixture.date)}
-                />
+                <ParagraphList description='Data:' value={event.fixture.date} />
                 <ParagraphList
                   description={`${event.teams.home.name} X ${event.teams.away.name}`}
                   value=''
                 />
               </div>
-              <div className='align-middle justify-center self-center'>
-                <button onClick={handleListDetailClick}>X</button>
+              <div className='flex'>
+                <button onClick={() => handleListDetailClick(index)}>
+                  {openDetails ? <GoArrowUp /> : <GoArrowDown />}
+                </button>
               </div>
             </div>
             <div>
