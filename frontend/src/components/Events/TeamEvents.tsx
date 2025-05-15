@@ -8,12 +8,16 @@ import ErrorBlock from '../UI/ErrorBlock';
 import Title from '../UI/Title';
 
 import TeamEventsList from './TeamEventsList';
+import type { FavoriteTeam } from '../../models/teamModels';
 
 const TeamEvents: React.FC<{
-  teamId: number;
+  favoriteTeam: FavoriteTeam;
   isOpen: boolean;
   onClosePage: () => void;
-}> = ({ teamId, isOpen, onClosePage }) => {
+}> = ({ favoriteTeam, isOpen, onClosePage }) => {
+  const teamId = favoriteTeam.teamId;
+  const teamName = favoriteTeam.name;
+
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['teamsEvents', { teamId }],
     // queryFn: ({ signal }) => fetchTeams(signal, searchTerm, searchType),
@@ -37,12 +41,7 @@ const TeamEvents: React.FC<{
   }
 
   if (data != undefined && data.length > 0) {
-    content = (
-      <div id='teamDetail' className='p-4'>
-        <p>TeamId: {teamId}</p>
-        <TeamEventsList data={data} />
-      </div>
-    );
+    content = <TeamEventsList data={data} />;
   }
 
   return (
@@ -58,8 +57,8 @@ const TeamEvents: React.FC<{
         </div>
 
         <div className='p-6'>
-          <Title title='Próximas partidas do time:' />
-          <div className='mt-4'>{content}</div>
+          <Title title={`Próximas partidas do ${teamName}`} />
+          <div>{content}</div>
         </div>
       </aside>
     </>

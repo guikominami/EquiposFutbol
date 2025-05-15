@@ -34,14 +34,19 @@ export function fetchFavoriteTeams(
 
   return data;
 }
+import { mockData } from '../models/eventsModels';
 
 export function fetchTeamNextEvents(
   searchTerm: number
 ): Promise<EventsTeam[] | undefined> {
   const url = 'http://localhost:3000/api/events/next/';
 
-  const response = requestData(url, searchTerm.toString());
-  const data = response;
+  // const response = requestData(url, searchTerm.toString());
+  // const data = response;
+
+  //MOCK
+
+  const data = mockData;
 
   return data;
 }

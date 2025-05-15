@@ -7,16 +7,16 @@ import FavoriteTeamsList from '../components/Teams/FavoriteTeamsList';
 import TeamEvents from '../components/Events/TeamEvents';
 
 import { GetUserCredentials } from '../components/Auth/UserCredentials';
+import type { FavoriteTeam } from '../models/teamModels';
 
 const Events = () => {
-  const [teamIdSelected, setTeamIdSelected] = useState<number>(0);
+  const [favoriteTeam, setFavoriteTeam] = useState<FavoriteTeam>();
   const [openTeamEvents, setOpenTeamEvents] = useState<boolean>(false);
 
   const { userName } = GetUserCredentials();
 
-  //AQUI POSSO SUbstituir o favorite tema pelo team recebendo apenas 1 parametro transformando em numbero
-  function handleListClick(favoriteTeamid: string, teamId: number) {
-    setTeamIdSelected(teamId);
+  function handleListClick(favoriteTeam: FavoriteTeam) {
+    setFavoriteTeam(favoriteTeam);
     setOpenTeamEvents((state) => !state);
   }
 
@@ -32,9 +32,9 @@ const Events = () => {
         </p>
         <Title title='Veja as próximas partidas dos seus times favoritos.' />
         <FavoriteTeamsList onClick={handleListClick} iconType='detalhe' />
-        {openTeamEvents && (
+        {openTeamEvents && favoriteTeam != undefined && (
           <TeamEvents
-            teamId={teamIdSelected}
+            favoriteTeam={favoriteTeam}
             isOpen={openTeamEvents}
             onClosePage={handleClosePage}
           />

@@ -6,11 +6,12 @@ import Container from '../components/UI/Container';
 import Title from '../components/UI/Title';
 
 import AllTeams from '../components/Teams/AllTeams';
-import ListFavoriteTeams from '../components/Teams/FavoriteTeamsList';
+import FavoriteTeamsList from '../components/Teams/FavoriteTeamsList';
 import { removeFavoriteTeam } from '../api/teams';
 
 import { useContext } from 'react';
 import { UserDataContext } from '../context/user.context';
+import type { FavoriteTeam } from '../models/teamModels';
 
 const Teams = () => {
   const { userCredentials } = useContext(UserDataContext);
@@ -31,8 +32,8 @@ const Teams = () => {
     },
   });
 
-  function handleListClick(favoriteTeamid: string) {
-    mutate(favoriteTeamid);
+  function handleListClick(favoriteTeam: FavoriteTeam) {
+    mutate(favoriteTeam._id);
   }
 
   return (
@@ -40,11 +41,7 @@ const Teams = () => {
       <Container>
         <Title title='Selecione seus times de futebol para criar a lista de favoritos:' />
         <AllTeams />
-        <ListFavoriteTeams
-          onClick={handleListClick}
-          iconType='X'
-          userId={userId}
-        />
+        <FavoriteTeamsList onClick={handleListClick} iconType='X' />
       </Container>
     </Section>
   );

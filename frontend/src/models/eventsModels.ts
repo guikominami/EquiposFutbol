@@ -1,13 +1,88 @@
-// export const mockData: EventsTeam = {
-//   fixture: {
-//     date: "",
-//     id: 1,
-//     timestamp: 123123
+export const mockData: EventsTeam[] = [
+  {
+    fixture: {
+      date: '2020-07-30T18:00:00.00',
+      id: 1,
+      timestamp: 123123,
+      timeZone: 'string',
+      venue: {
+        city: 'string',
+        id: 1,
+        name: 'string',
+      },
+    },
+    league: {
+      league: 'string',
+      country: 'string',
+      flag: 'string',
+      id: 'string',
+      logo: 'string',
+      name: 'string',
+      round: 'string',
+      season: 'string',
+      standings: true,
+    },
+    teams: {
+      away: {
+        id: 1,
+        logo: 'string',
+        name: 'Barcelona',
+        winner: 'string',
+      },
+      home: {
+        id: 1,
+        logo: 'string',
+        name: 'asa de arapiraca',
+        winner: 'string',
+      },
+    },
+  },
+  {
+    fixture: {
+      date: '2020-07-30T18:00:00.00',
+      id: 1,
+      timestamp: 123123,
+      timeZone: 'string',
+      venue: {
+        city: 'string',
+        id: 1,
+        name: 'string',
+      },
+    },
+    league: {
+      league: 'string',
+      country: 'string',
+      flag: 'string',
+      id: 'string',
+      logo: 'string',
+      name: 'string',
+      round: 'string',
+      season: 'string',
+      standings: true,
+    },
+    teams: {
+      away: {
+        id: 1,
+        logo: 'string',
+        name: 'Juventude',
+        winner: 'string',
+      },
+      home: {
+        id: 1,
+        logo: 'string',
+        name: 'Barcelona',
+        winner: 'string',
+      },
+    },
+  },
+];
 
-//   },
-//   league: {},
-//   teams: {},
-// };
+export type FavoriteTeamEventDetails = {
+  leagueName: string;
+  homeTeam: string;
+  awayTeam: string;
+  local: string;
+};
 
 export type EventsTeam = {
   fixture: Fixture;
