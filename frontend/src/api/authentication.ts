@@ -1,9 +1,9 @@
-import type { Auth } from '../models/teamModels';
+import type { UserCredencials } from '../models/userModels';
 
 export const authenticate = async (
   email: string,
   password: string
-): Promise<Auth> => {
+): Promise<UserCredencials> => {
   const authData = {
     email: email,
     password: password,
@@ -25,8 +25,8 @@ export const authenticate = async (
     throw error;
   }
 
-  const resData: Auth = await response.json();
-  const userToken: Auth = {
+  const resData: UserCredencials = await response.json();
+  const userToken: UserCredencials = {
     token: resData.token,
     userId: resData.userId,
     userName: resData.userName,

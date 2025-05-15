@@ -1,3 +1,14 @@
+// export const mockData: EventsTeam = {
+//   fixture: {
+//     date: "",
+//     id: 1,
+//     timestamp: 123123
+
+//   },
+//   league: {},
+//   teams: {},
+// };
+
 export type EventsTeam = {
   fixture: Fixture;
   league: League;

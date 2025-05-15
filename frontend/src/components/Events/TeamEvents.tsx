@@ -26,11 +26,11 @@ const TeamEvents: React.FC<{
     content = <LoadingIndicator />;
   }
 
-  if (isError) {
+  if (isError || (data != undefined && data.length == 0)) {
     content = (
       <ErrorBlock
         errorTitle=''
-        errorMessage='Não foi possível encontrar eventos deste time.'
+        errorMessage='Não foi possível encontrar eventos deste time. Tente mais tarde.'
       />
     );
     console.log(error);
