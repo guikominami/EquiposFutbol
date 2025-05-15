@@ -62,4 +62,7 @@ router.get('/id/:id', function (req, res) {
     });
 });
 
+//TEAM AWAY INFO
+//https://v3.football.api-sports.io/teams?id=289
+
 module.exports = router;

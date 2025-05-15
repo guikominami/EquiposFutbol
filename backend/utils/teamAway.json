@@ -1,0 +1,22 @@
+"response": [
+{
+team: {
+id: 289
+name: "Vissel Kobe"
+code: "KOB"
+country: "Japan"
+founded: 1966
+national: false
+logo: "https://media.api-sports.io/football/teams/289.png"
+}
+venue: {
+id: 984
+name: "NOEVIR Stadium Kobe"
+address: "1-2-2 Misaki-cho, Hyogo-ku"
+city: "Kobe"
+capacity: 30132
+surface: "grass"
+image: "https://media.api-sports.io/football/venues/984.png"
+}
+}
+]
