@@ -13,7 +13,8 @@ router.get('/next/:teamid', function (req, res) {
     method: 'get',
     url,
     headers: {
-      'x-rapidapi-key': getEnvironmentVariable('privateKey-externalapi'),
+      // 'x-rapidapi-key': getEnvironmentVariable('privateKey-externalapi'),
+      'x-rapidapi-key': config.get('privateKey-externalapi'),
       'x-rapidapi-host': 'v3.football.api-sports.io',
     },
   })

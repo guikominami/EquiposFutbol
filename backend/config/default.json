@@ -1,4 +1,5 @@
 {
   "privateKey-externalapi": "",
-  "jwtPrivateKey": ""
+  "jwtPrivateKey": "",
+  "db": ""
 }

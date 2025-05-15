@@ -1,4 +1,3 @@
 {
-  "name": "Equipos Futbol - Production",
-  "db": "MONGOD_CONNECT_URI_PROD"
+  "name": "Equipos Futbol - Production"
 }

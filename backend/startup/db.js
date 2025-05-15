@@ -6,7 +6,7 @@ const { getEnvironmentVariable } = require('../utils/environmentVariable');
 module.exports = function () {
   mongoose;
 
-  const db = getEnvironmentVariable('db');
+  const db = config.get('db');
 
   mongoose
     .connect(db)
