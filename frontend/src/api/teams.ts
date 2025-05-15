@@ -14,50 +14,38 @@ import type { EventsTeam } from '../models/eventsModels';
 import { requestData } from './requestApi';
 
 export function fetchTeams(
+  signal: AbortSignal,
   searchTerm: string,
   searchType: string
 ): Promise<TeamFull[] | undefined> {
   const url = 'http://localhost:3000/api/teams/' + searchType;
 
-  const response = requestData(url, searchTerm);
+  const response = requestData(url, signal, searchTerm);
+
+  console.log(response);
   const data = response;
 
   return data;
 }
 
 export function fetchFavoriteTeams(
+  signal: AbortSignal,
   searchTerm: string
 ): Promise<FavoriteTeam[] | undefined> {
   const url = 'http://localhost:3000/api/favoriteTeams/';
 
-  const data = requestData(url, searchTerm);
+  const data = requestData(url, signal, searchTerm);
 
   return data;
 }
-import { mockData } from '../models/eventsModels';
 
 export function fetchTeamNextEvents(
+  signal: AbortSignal,
   searchTerm: number
 ): Promise<EventsTeam[] | undefined> {
   const url = 'http://localhost:3000/api/events/next/';
 
-  const response = requestData(url, searchTerm.toString());
-  const data = response;
-
-  console.log('data', data);
-
-  //MOCK
-  //const data = mockData;
-
-  return data;
-}
-
-export function fetchTeamAllEvents(
-  searchTerm: number
-): Promise<EventsTeam[] | undefined> {
-  const url = 'http://localhost:3000/api/events/liveall/';
-
-  const response = requestData(url, searchTerm.toString());
+  const response = requestData(url, signal, searchTerm.toString());
   const data = response;
 
   return data;

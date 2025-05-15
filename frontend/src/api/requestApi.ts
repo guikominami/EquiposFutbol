@@ -1,13 +1,14 @@
-//TIPAR UMA RESPOSTA do tipo json
-
-export async function requestData(url: string, searchTerm?: string) {
+export async function requestData(
+  url: string,
+  signal: AbortSignal,
+  searchTerm?: string
+) {
   if (searchTerm) {
     url += searchTerm;
   }
 
   try {
-    // const response = await fetch(url, { signal: signal });
-    const response = await fetch(url);
+    const response = await fetch(url, { signal: signal });
 
     if (!response.ok) {
       let error;

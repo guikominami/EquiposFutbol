@@ -22,6 +22,7 @@ export const authenticate = async (
       'An error occurred while fetching the user favorite teams.'
     );
     error.message = await response.json();
+    console.log(error);
     throw error;
   }
 

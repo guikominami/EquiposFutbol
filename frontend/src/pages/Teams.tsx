@@ -18,8 +18,6 @@ const Teams = () => {
 
   let userId = userCredentials.userId;
 
-  console.log(userId);
-
   if (userId == null) {
     console.log('Não foi possível encontrar o id ou nome do usuário.');
     userId = '';

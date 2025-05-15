@@ -17,8 +17,8 @@ const AllTeams = () => {
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['teams', { searchTerm }],
-    // queryFn: ({ signal }) => fetchTeams(signal, searchTerm, searchType),
-    queryFn: () => fetchTeams(searchTerm, searchType),
+    queryFn: ({ signal }) => fetchTeams(signal, searchTerm, searchType),
+    staleTime: 5000,
     enabled: searchTerm !== '',
   });
 

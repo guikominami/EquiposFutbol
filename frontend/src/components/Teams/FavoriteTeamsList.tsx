@@ -19,7 +19,8 @@ const FavoriteTeamsList: React.FC<{
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['favoriteTeams'],
-    queryFn: () => fetchFavoriteTeams(userId),
+    queryFn: ({ signal }) => fetchFavoriteTeams(signal, userId),
+    staleTime: 5000,
   });
 
   let content;
