@@ -7,17 +7,18 @@ import ListItem from '../UI/ListItem';
 
 import { fetchFavoriteTeams } from '../../api/teams';
 
+import { GetUserCredentials } from '../Auth/UserCredentials';
+
 const FavoriteTeamsList: React.FC<{
   onClick: (id: string, teamid: number) => void;
   iconType: string;
-  userId: string;
-}> = ({ onClick, iconType, userId }) => {
+}> = ({ onClick, iconType }) => {
+  const { userId } = GetUserCredentials();
+
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['favoriteTeams'],
     queryFn: () => fetchFavoriteTeams(userId),
   });
-
-  console.log('data', data);
 
   let content;
 

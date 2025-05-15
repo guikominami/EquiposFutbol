@@ -31,7 +31,7 @@ export function fetchFavoriteTeams(
   const url = 'http://localhost:3000/api/favoriteTeams/';
 
   const data = requestData(url, searchTerm);
-  console.log(data);
+
   return data;
 }
 
@@ -67,8 +67,17 @@ export async function createNewFavoriteTeam(favoriteTeamData: NewFavoriteTeam) {
   });
 
   if (!response.ok) {
-    const error = new Error('An error occurred while creating the event');
-    error.message = await response.json();
+    let error;
+    if (response.status == 400) {
+      error = new Error(
+        'The user doesn´t exist in database.' + favoriteTeamData.userId
+      );
+    } else {
+      error = new Error(
+        'An error occurred while fetching the user favorite teams.'
+      );
+    }
+
     throw error;
   }
 

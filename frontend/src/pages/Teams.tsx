@@ -9,8 +9,15 @@ import AllTeams from '../components/Teams/AllTeams';
 import ListFavoriteTeams from '../components/Teams/FavoriteTeamsList';
 import { removeFavoriteTeam } from '../api/teams';
 
+import { useContext } from 'react';
+import { UserDataContext } from '../context/user.context';
+
 const Teams = () => {
-  let userId = localStorage.getItem('userId');
+  const { userCredentials } = useContext(UserDataContext);
+
+  let userId = userCredentials.userId;
+
+  console.log(userId);
 
   if (userId == null) {
     console.log('Não foi possível encontrar o id ou nome do usuário.');

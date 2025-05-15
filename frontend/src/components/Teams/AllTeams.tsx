@@ -7,8 +7,9 @@ import { fetchTeams } from '../../api/teams';
 import LoadingIndicator from '../UI/LoadingIndicator';
 import ErrorBlock from '../UI/ErrorBlock';
 import AllTeamsList from './AllTeamsList';
-
 import Form from './SearchTeamForm';
+
+import { GetUserCredentials } from '../Auth/UserCredentials';
 
 const AllTeams = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -21,12 +22,7 @@ const AllTeams = () => {
     enabled: searchTerm !== '',
   });
 
-  let userId = localStorage.getItem('userId');
-
-  if (userId == null) {
-    console.log('Não foi possível encontrar o id ou nome do usuário.');
-    userId = '';
-  }
+  const { userId } = GetUserCredentials();
 
   let content;
 

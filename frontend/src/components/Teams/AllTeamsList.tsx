@@ -10,7 +10,7 @@ const ListAllTeams: React.FC<{
   data: TeamFull[];
   userId: string;
 }> = ({ data, userId }) => {
-  const { mutate } = useMutation({
+  const { mutate, isError, error } = useMutation({
     mutationFn: createNewFavoriteTeam,
     onSuccess: () => {
       queryClient.invalidateQueries();
@@ -18,11 +18,16 @@ const ListAllTeams: React.FC<{
   });
 
   function handleListClick(id: number, item: string) {
+    console.log('id', id);
     mutate({
       name: item,
       teamId: id,
       userId: userId,
     });
+  }
+
+  if (isError) {
+    console.log(error['message']);
   }
 
   return (
