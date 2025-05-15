@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "config": "^3.3.12"
+    "config": "^3.3.12",
+    "jsonwebtoken": "^9.0.2"
   }
 }
