@@ -12,15 +12,13 @@ const TeamEventsList: React.FC<{ data: EventsTeam[] }> = ({ data }) => {
   const [openDetails, setOpenDetails] = useState<boolean>(false);
   const [indexDetail, setIndexDetail] = useState<number>();
 
-  console.log(indexDetail);
-
   function handleListDetailClick(index: number) {
     setOpenDetails((state) => !state);
     setIndexDetail(index);
   }
 
   return (
-    <ul className='mt-4'>
+    <ul className='mt-4 scroll-auto w-fit'>
       {data.map((event, index) => (
         <li className='p-4 bg-black/10 mb-2 border-b-2' key={index}>
           <div className='flex flex-col'>
@@ -56,6 +54,7 @@ const TeamEventsList: React.FC<{ data: EventsTeam[] }> = ({ data }) => {
                   teamHome={event.teams.home.name}
                   contry={`${event.fixture.venue.name} - ${event.fixture.venue.city}`}
                   open={openDetails}
+                  teamAwayId={event.teams.away.id}
                 />
               )}
             </div>

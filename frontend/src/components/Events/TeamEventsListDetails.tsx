@@ -1,5 +1,8 @@
+import { useState } from 'react';
+
+import TeamAwayDetail from './TeamAwayDetail';
+
 import ParagraphList from '../UI/ParagraphList';
-import { TbListDetails } from 'react-icons/tb';
 
 const TeamEventsListDetails: React.FC<{
   teamHome: string;
@@ -7,7 +10,14 @@ const TeamEventsListDetails: React.FC<{
   leagueName: string;
   contry: string;
   open: boolean;
-}> = ({ teamHome, teamAway, leagueName, contry, open }) => {
+  teamAwayId: number;
+}> = ({ teamHome, teamAway, leagueName, contry, open, teamAwayId }) => {
+  const [openDetails, setOpenDetails] = useState<boolean>(false);
+
+  function handleButtonDetailClick() {
+    setOpenDetails((state) => !state);
+  }
+
   return (
     <>
       {open && (
@@ -15,13 +25,22 @@ const TeamEventsListDetails: React.FC<{
           <ParagraphList description='Liga:' value={leagueName} />
           <div className='flex flex-row'>
             <ParagraphList description='Time da casa:' value={teamHome} />
-            <button className='ml-4'>
-              <TbListDetails />
+            <button
+              className='ml-2 bg-yellow-200 px-2 border-1'
+              onClick={handleButtonDetailClick}
+            >
+              ?
             </button>
           </div>
 
           <ParagraphList description='Time de fora:' value={teamAway} />
           <ParagraphList description='Local:' value={contry} />
+          {openDetails && (
+            <TeamAwayDetail
+              teamAwayId={teamAwayId}
+              onClosePage={handleButtonDetailClick}
+            />
+          )}
         </div>
       )}
     </>

@@ -9,13 +9,11 @@ import ListContainer from '../UI/ListContainer';
 import ListItem from '../UI/ListItem';
 import { type TeamFull } from '../../models/teamModels';
 
-const ListAllTeams: React.FC<{
+const AllTeamsList: React.FC<{
   data: TeamFull[];
   userId: string;
 }> = ({ data, userId }) => {
   const { qtdFavoriteTeams } = useContext(FavoriteTeamsDataContext);
-
-  console.log('qtdFavoriteTeams', qtdFavoriteTeams);
 
   const { mutate, isError, error } = useMutation({
     mutationFn: createNewFavoriteTeam,
@@ -57,4 +55,4 @@ const ListAllTeams: React.FC<{
   );
 };
 
-export default ListAllTeams;
+export default AllTeamsList;

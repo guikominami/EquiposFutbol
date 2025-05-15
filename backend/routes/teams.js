@@ -5,6 +5,7 @@ const router = express.Router();
 const config = require('config');
 
 const dataTeams = require('../datamock/teams.json');
+const teamAway = require('../datamock/teamAway.json');
 
 router.get('/bycountry/:country', function (req, res) {
   const url = `https://v3.football.api-sports.io/teams?country=${req.params.country}`;
@@ -26,9 +27,8 @@ router.get('/bycountry/:country', function (req, res) {
 });
 
 router.get('/byteam/:team', function (req, res) {
-  const mock = config.get('test');
-
-  if (mock === 'true') {
+  //receber dados locais
+  if (config.get('test') === 'mock') {
     res.send(JSON.stringify(dataTeams));
     return;
   }
@@ -52,6 +52,11 @@ router.get('/byteam/:team', function (req, res) {
 });
 
 router.get('/id/:id', function (req, res) {
+  //receber dados locais
+  if (config.get('test') === 'mock') {
+    res.send(JSON.stringify(teamAway));
+    return;
+  }
   const url = `https://v3.football.api-sports.io/teams?id=${req.params.id}`;
 
   axios({

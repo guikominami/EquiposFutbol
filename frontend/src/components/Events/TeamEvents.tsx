@@ -20,8 +20,7 @@ const TeamEvents: React.FC<{
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['teamsEvents', { teamId }],
-    // queryFn: ({ signal }) => fetchTeams(signal, searchTerm, searchType),
-    queryFn: () => fetchTeamNextEvents(teamId),
+    queryFn: ({ signal }) => fetchTeamNextEvents(signal, teamId),
   });
 
   let content;
@@ -47,7 +46,7 @@ const TeamEvents: React.FC<{
   return (
     <>
       <aside
-        className={`h-full fixed z-10 top-0 w-[100%] md:w-[20%] border-r bg-white 
+        className={`h-full absolute z-0 top-19 w-[100%] md:w-[20%] border-r bg-white 
                     duration-500 ease-in-out ${
                       isOpen ? 'right-0' : '-right-100'
                     }`}
