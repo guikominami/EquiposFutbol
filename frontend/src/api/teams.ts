@@ -22,7 +22,6 @@ export function fetchTeams(
 
   const response = requestData(url, signal, searchTerm);
 
-  console.log(response);
   const data = response;
 
   return data;

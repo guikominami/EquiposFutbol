@@ -28,7 +28,7 @@ router.get('/bycountry/:country', function (req, res) {
 router.get('/byteam/:team', function (req, res) {
   const mock = config.get('test');
 
-  if (mock === true) {
+  if (mock === 'true') {
     res.send(JSON.stringify(dataTeams));
     return;
   }

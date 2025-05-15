@@ -25,7 +25,7 @@ export async function requestData(
 
     const data = await response.json();
 
-    if (data.lenght > 0 && data.errors.lenght > 0) {
+    if (data.lenght > 0 && data.errors.length > 0) {
       const error = new Error(data.errors);
       throw error;
     }

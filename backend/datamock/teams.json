@@ -1,22 +1,124 @@
 {
-  "response": {
-    "team": {
-      "id": 1,
-      "name": "Barcelona",
-      "code": "1",
-      "country": "Spain",
-      "founded": 1930,
-      "national": true,
-      "logo": ""
+  "response": [
+    {
+      "team": {
+        "id": 1,
+        "name": "Barcelona",
+        "code": "1",
+        "country": "Spain",
+        "founded": 1930,
+        "national": true,
+        "logo": ""
+      },
+      "venue": {
+        "id": 1,
+        "name": "Barcelona estadio",
+        "address": "Rua da Mooca",
+        "city": "Barcelona",
+        "capacity": 30000,
+        "surface": "",
+        "image": ""
+      }
     },
-    "venue": {
-      "id": 1,
-      "name": "Barcelona estadio",
-      "address": "Rua da Mooca",
-      "city": "Barcelona",
-      "capacity": 30000,
-      "surface": "",
-      "image": ""
+    {
+      "team": {
+        "id": 2,
+        "name": "Barcelona 2",
+        "code": "1",
+        "country": "Spain",
+        "founded": 1930,
+        "national": true,
+        "logo": ""
+      },
+      "venue": {
+        "id": 3,
+        "name": "Barcelona estadio",
+        "address": "Rua da Mooca",
+        "city": "Barcelona",
+        "capacity": 30000,
+        "surface": "",
+        "image": ""
+      }
+    },
+    {
+      "team": {
+        "id": 3,
+        "name": "Barcelona 3",
+        "code": "1",
+        "country": "Spain",
+        "founded": 1930,
+        "national": true,
+        "logo": ""
+      },
+      "venue": {
+        "id": 1,
+        "name": "Barcelona estadio",
+        "address": "Rua da Mooca",
+        "city": "Barcelona",
+        "capacity": 30000,
+        "surface": "",
+        "image": ""
+      }
+    },
+    {
+      "team": {
+        "id": 4,
+        "name": "Barcelona 4",
+        "code": "1",
+        "country": "Spain",
+        "founded": 1930,
+        "national": true,
+        "logo": ""
+      },
+      "venue": {
+        "id": 1,
+        "name": "Barcelona estadio",
+        "address": "Rua da Mooca",
+        "city": "Barcelona",
+        "capacity": 30000,
+        "surface": "",
+        "image": ""
+      }
+    },
+    {
+      "team": {
+        "id": 5,
+        "name": "Barcelona 5",
+        "code": "1",
+        "country": "Spain",
+        "founded": 1930,
+        "national": true,
+        "logo": ""
+      },
+      "venue": {
+        "id": 1,
+        "name": "Barcelona estadio",
+        "address": "Rua da Mooca",
+        "city": "Barcelona",
+        "capacity": 30000,
+        "surface": "",
+        "image": ""
+      }
+    },
+    {
+      "team": {
+        "id": 6,
+        "name": "Barcelona 6",
+        "code": "1",
+        "country": "Spain",
+        "founded": 1930,
+        "national": true,
+        "logo": ""
+      },
+      "venue": {
+        "id": 1,
+        "name": "Barcelona estadio",
+        "address": "Rua da Mooca",
+        "city": "Barcelona",
+        "capacity": 30000,
+        "surface": "",
+        "image": ""
+      }
     }
-  }
+  ]
 }

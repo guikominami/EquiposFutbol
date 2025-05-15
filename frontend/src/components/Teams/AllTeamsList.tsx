@@ -30,6 +30,8 @@ const ListAllTeams: React.FC<{
     console.log(error['message']);
   }
 
+  console.log(data);
+
   return (
     <ListContainer message='Selecione o(s) time(s):'>
       {data

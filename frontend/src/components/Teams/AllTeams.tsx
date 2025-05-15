@@ -40,7 +40,7 @@ const AllTeams = () => {
     console.log(error);
   }
 
-  if (data != undefined && data.length > 0) {
+  if (data !== undefined && data.length > 0) {
     content = <AllTeamsList data={data} userId={userId} />;
   }
 

@@ -8,6 +8,7 @@ PROCEDIMENTOS:
 Frontend:
 
 1. Clonar repositorio
+   https://github.com/guikominami/EquiposFutbol.git
 
 2. Acessar diretorio
    cd frontend
