@@ -30,7 +30,7 @@ const Events = () => {
         <p className='mb-4'>
           Hola <b>{userName}</b> !
         </p>
-        <Title title='Veja as próximas partidas dos seus times favoritos.' />
+        <Title title='Mira los próximos partidos de tus equipos favoritos.' />
         <FavoriteTeamsList onClick={handleListClick} iconType='detalhe' />
         {openTeamEvents && favoriteTeam != undefined && (
           <TeamEvents

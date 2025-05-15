@@ -34,7 +34,7 @@ const NewUser = () => {
 
     console.log(newUser);
 
-    alert('Usuário criado com sucesso!');
+    alert('Nuevo usuario registrado con éxito!');
 
     userName.current!.value = '';
     userEmail.current!.value = '';
@@ -44,7 +44,7 @@ const NewUser = () => {
   return (
     <Section>
       <Container>
-        <Title title='Cadastre um novo usuário' />
+        <Title title='Registrar un nuevo usuario' />
         <div>
           <form
             defaultValue={''}
@@ -52,17 +52,17 @@ const NewUser = () => {
             className='flex flex-col justify-start align-middle'
             onSubmit={handleSubmit}
           >
-            <Subtitle message='Digite o seu nome:' />
+            <Subtitle message='Introduce tu nombre:' />
             <Input inputValue={userName} id='name' />
-            <Subtitle message='Digite o seu email:' />
+            <Subtitle message='Introduce tu email:' />
             <Input inputValue={userEmail} id='email' />
-            <Subtitle message='Digite a sua senha:' />
+            <Subtitle message='Introduce tua senha:' />
             <Input inputValue={userPassword} id='senha' isPassword />
             <span className='mt-2 flex justify-between align-middle items-center'>
               <Link to='/' className='cursor-default text-blue-600 underline'>
-                Já tem usuário? Efetue login.
+                Ya tienes un usuario? Acceso.
               </Link>
-              <Button>Salvar</Button>
+              <Button>Guardar</Button>
             </span>
           </form>
         </div>

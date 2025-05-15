@@ -36,7 +36,7 @@ const Login = () => {
         navigate('/events');
       } catch (error) {
         console.log(error);
-        alert('Usuário ou senha inválidos.');
+        alert('Nombre de usuario o contraseña no válidos.');
       }
 
       userEmail.current!.value = '';
@@ -44,13 +44,13 @@ const Login = () => {
 
       return;
     }
-    alert('Digite usuário e senha!');
+    alert('Ingrese su nombre de usuario y contraseña!');
   }
 
   return (
     <Section>
       <Container>
-        <Title title='Efetue o login' />
+        <Title title='Inicie sesión' />
         <div>
           <form
             defaultValue={''}
@@ -58,16 +58,16 @@ const Login = () => {
             className='flex flex-col justify-start align-middle'
             onSubmit={handleSubmit}
           >
-            <Subtitle message='Digite o seu nome:' />
+            <Subtitle message='Introduce tu nombre:' />
             <Input inputValue={userEmail} id='email' />
-            <Subtitle message='Digite a sua senha:' />
+            <Subtitle message='Introduce tua senha:' />
             <Input inputValue={userPassword} id='senha' isPassword />
             <span className='mt-2 flex justify-between align-middle items-center'>
               <Link
                 to='/user'
                 className='cursor-default text-blue-600 underline'
               >
-                Cadastro novo usuário
+                Registro de nuevo usuario
               </Link>
               <Button>Login</Button>
             </span>

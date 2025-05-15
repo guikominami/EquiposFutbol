@@ -39,7 +39,7 @@ const Teams = () => {
   return (
     <Section>
       <Container>
-        <Title title='Selecione seus times de futebol para criar a lista de favoritos:' />
+        <Title title='Selecciona tus equipos de fútbol para crear la lista de favoritos.' />
         <FavoriteTeamsContextProvider>
           <AllTeams />
           <FavoriteTeamsList onClick={handleListClick} iconType='X' />
