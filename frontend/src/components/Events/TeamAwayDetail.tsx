@@ -1,10 +1,43 @@
+import { useQuery } from '@tanstack/react-query';
+
 import Title from '../UI/Title';
 import { AiOutlineClose } from 'react-icons/ai';
+
+import { fetchTeams } from '../../api/teams';
+
+import LoadingIndicator from '../UI/LoadingIndicator';
+import ErrorBlock from '../UI/ErrorBlock';
 
 const TeamAwayDetail: React.FC<{
   teamAwayId: number;
   onClosePage: () => void;
 }> = ({ teamAwayId, onClosePage }) => {
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ['teams'],
+    queryFn: ({ signal }) => fetchTeams(signal, teamAwayId.toString(), 'id/'),
+    staleTime: 5000,
+  });
+
+  let content;
+
+  if (isLoading) {
+    content = <LoadingIndicator />;
+  }
+
+  if (isError) {
+    content = (
+      <ErrorBlock
+        errorTitle=''
+        errorMessage='Não foi possível encontrar os dados do time adversário.'
+      />
+    );
+    console.log(error);
+  }
+
+  if (data !== undefined && data.length > 0) {
+    content = <div></div>;
+  }
+
   return (
     <div
       className='
@@ -18,7 +51,7 @@ const TeamAwayDetail: React.FC<{
         </div>
         <div>
           <Title title='Detalhes do time' />
-          <p>{teamAwayId}</p>
+          {content}
         </div>
       </div>
     </div>
