@@ -160,6 +160,38 @@ GIT
 git push -u origin main
 
 ---------------------------------
+Config 
+---------------------------------
+definir 2 arquivos: custom-environment-variable.json
+{
+  "privateKey-externalapi": "futbol_external_PrivateKey",
+  "jwtPrivateKey": "futbol_jwtPrivateKey",
+  "db": "MONGOD_CONNECT_URI_DEV",
+  "test": "mock"
+}
+e default.json
+{
+  "privateKey-externalapi": "",
+  "jwtPrivateKey": "",
+  "db": "",
+  "test": ""
+}
+
+Criar variáveis de ambiente com os nomes que estão apontando
+neste arquivo. Será retorno o valor.
+
+Por exemplo: 
+futbol_external_PrivateKey=1234
+mock=true
+
+ao usar 
+const mock = config.get('test');
+o valor do mock será true
+
+const chave = config.get('privateKey-externalapi');
+o valor da chave será 1234
+
+---------------------------------
 Teste
 ---------------------------------
 npm i test --save-dev

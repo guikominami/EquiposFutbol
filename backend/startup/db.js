@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 const config = require('config');
 
-const { getEnvironmentVariable } = require('../utils/environmentVariable');
-
 module.exports = function () {
   mongoose;
 

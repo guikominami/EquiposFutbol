@@ -1,10 +1,7 @@
-const { Country } = require('../models/country');
 const axios = require('axios');
 const express = require('express');
 const router = express.Router();
 const config = require('config');
-
-const { getEnvironmentVariable } = require('../utils/environmentVariable');
 
 router.get('/', function (req, res) {
   const url = 'https://v3.football.api-sports.io/countries';
@@ -13,7 +10,7 @@ router.get('/', function (req, res) {
     method: 'get',
     url,
     headers: {
-      'x-rapidapi-key': getEnvironmentVariable('privateKey-externalapi'),
+      'x-rapidapi-key': config.get('privateKey-externalapi'),
       'x-rapidapi-host': 'v3.football.api-sports.io',
     },
   })

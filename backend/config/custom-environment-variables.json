@@ -1,5 +1,6 @@
 {
   "privateKey-externalapi": "futbol_external_PrivateKey",
   "jwtPrivateKey": "futbol_jwtPrivateKey",
-  "db": "MONGOD_CONNECT_URI_DEV"
+  "db": "MONGOD_CONNECT_URI_DEV",
+  "test": "mock"
 }

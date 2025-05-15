@@ -2,8 +2,9 @@ const { Team } = require('../models/team');
 const axios = require('axios');
 const express = require('express');
 const router = express.Router();
+const config = require('config');
 
-const { getEnvironmentVariable } = require('../utils/environmentVariable');
+const dataTeams = require('../datamock/teams.json');
 
 router.get('/bycountry/:country', function (req, res) {
   const url = `https://v3.football.api-sports.io/teams?country=${req.params.country}`;
@@ -12,7 +13,6 @@ router.get('/bycountry/:country', function (req, res) {
     method: 'get',
     url,
     headers: {
-      // 'x-rapidapi-key': getEnvironmentVariable('privateKey-externalapi'),
       'x-rapidapi-key': config.get('privateKey-externalapi'),
       'x-rapidapi-host': 'v3.football.api-sports.io',
     },
@@ -26,13 +26,20 @@ router.get('/bycountry/:country', function (req, res) {
 });
 
 router.get('/byteam/:team', function (req, res) {
+  const mock = config.get('test');
+
+  if (mock === true) {
+    res.send(JSON.stringify(dataTeams));
+    return;
+  }
+
   const url = `https://v3.football.api-sports.io/teams?search=${req.params.team}`;
 
   axios({
     method: 'get',
     url,
     headers: {
-      'x-rapidapi-key': getEnvironmentVariable('privateKey-externalapi'),
+      'x-rapidapi-key': config.get('privateKey-externalapi'),
       'x-rapidapi-host': 'v3.football.api-sports.io',
     },
   })
@@ -51,7 +58,7 @@ router.get('/id/:id', function (req, res) {
     method: 'get',
     url,
     headers: {
-      'x-rapidapi-key': getEnvironmentVariable('privateKey-externalapi'),
+      'x-rapidapi-key': config.get('privateKey-externalapi'),
       'x-rapidapi-host': 'v3.football.api-sports.io',
     },
   })

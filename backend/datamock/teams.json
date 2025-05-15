@@ -1,0 +1,22 @@
+{
+  "response": {
+    "team": {
+      "id": 1,
+      "name": "Barcelona",
+      "code": "1",
+      "country": "Spain",
+      "founded": 1930,
+      "national": true,
+      "logo": ""
+    },
+    "venue": {
+      "id": 1,
+      "name": "Barcelona estadio",
+      "address": "Rua da Mooca",
+      "city": "Barcelona",
+      "capacity": 30000,
+      "surface": "",
+      "image": ""
+    }
+  }
+}
