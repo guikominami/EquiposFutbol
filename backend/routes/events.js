@@ -6,8 +6,7 @@ const router = express.Router();
 
 const { getEnvironmentVariable } = require('../utils/environmentVariable');
 
-// const environmentVariableName = config.get('privateKey-externalapi');
-// const privateKey = process.env[environmentVariableName];
+console.log(getEnvironmentVariable('privateKey-externalapi'));
 
 router.get('/next/:teamid', function (req, res) {
   const url = `https://v3.football.api-sports.io/fixtures?season=2023&team=${req.params.teamid}`;
