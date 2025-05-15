@@ -6,8 +6,6 @@ const router = express.Router();
 
 const { getEnvironmentVariable } = require('../utils/environmentVariable');
 
-console.log(getEnvironmentVariable('privateKey-externalapi'));
-
 router.get('/next/:teamid', function (req, res) {
   const url = `https://v3.football.api-sports.io/fixtures?season=2023&team=${req.params.teamid}`;
 
@@ -16,27 +14,6 @@ router.get('/next/:teamid', function (req, res) {
     url,
     headers: {
       'x-rapidapi-key': getEnvironmentVariable('privateKey-externalapi'),
-      'x-rapidapi-host': 'v3.football.api-sports.io',
-    },
-  })
-    .then(function (response) {
-      res.send(JSON.stringify(response.data));
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-});
-
-module.exports = router;
-
-router.get('/liveall/teamid', function (req, res) {
-  const url = 'https://v3.football.api-sports.io/fixtures?live=all';
-
-  axios({
-    method: 'get',
-    url,
-    headers: {
-      'x-rapidapi-key': privateKey,
       'x-rapidapi-host': 'v3.football.api-sports.io',
     },
   })

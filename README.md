@@ -13,3 +13,7 @@ https://dashboard.api-football.com/profile?access
 
 4- Ejecute el siguiente comando para crear el entorno de base de datos Docker:
 docker run --name mongodb-futbol -p 27017:27017 -e MONGODB_INITDB_ROOT_USERNAME=mongodb -e MONGODB_INITDB_ROOT_PASSWORD=password -d mongodb/mongodb-community-server:7.0.0-ubi8
+
+Backend:
+cd backend
+nodemon index.js
