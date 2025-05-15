@@ -31,7 +31,7 @@ router.get('/byteam/:team', function (req, res) {
     method: 'get',
     url,
     headers: {
-      'x-rapidapi-key': privateKey,
+      'x-rapidapi-key': getEnvironmentVariable('privateKey-externalapi'),
       'x-rapidapi-host': 'v3.football.api-sports.io',
     },
   })
@@ -50,7 +50,7 @@ router.get('/id/:id', function (req, res) {
     method: 'get',
     url,
     headers: {
-      'x-rapidapi-key': privateKey,
+      'x-rapidapi-key': getEnvironmentVariable('privateKey-externalapi'),
       'x-rapidapi-host': 'v3.football.api-sports.io',
     },
   })
