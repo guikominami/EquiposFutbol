@@ -41,12 +41,13 @@ export function fetchTeamNextEvents(
 ): Promise<EventsTeam[] | undefined> {
   const url = 'http://localhost:3000/api/events/next/';
 
-  // const response = requestData(url, searchTerm.toString());
-  // const data = response;
+  const response = requestData(url, searchTerm.toString());
+  const data = response;
+
+  console.log('data', data);
 
   //MOCK
-
-  const data = mockData;
+  //const data = mockData;
 
   return data;
 }

@@ -22,9 +22,9 @@ function App() {
           <UserDataContextProvider>
             <Routes>
               <Route path='/' element={<Login />} />
+              <Route path='/user' element={<NewUser />} />
               <Route element={<PrivateRoute />}>
                 <Route path='/events' element={<Events />} />
-                <Route path='/user' element={<NewUser />} />
                 <Route path='/teams' element={<Teams />} />
               </Route>
             </Routes>

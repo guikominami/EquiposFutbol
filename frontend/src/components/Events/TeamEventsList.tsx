@@ -12,7 +12,7 @@ const TeamEventsList: React.FC<{ data: EventsTeam[] }> = ({ data }) => {
   const [openDetails, setOpenDetails] = useState<boolean>(false);
   const [indexDetail, setIndexDetail] = useState<number>();
 
-  console.log(openDetails);
+  console.log(indexDetail);
 
   function handleListDetailClick(index: number) {
     setOpenDetails((state) => !state);
@@ -32,19 +32,30 @@ const TeamEventsList: React.FC<{ data: EventsTeam[] }> = ({ data }) => {
                   value=''
                 />
               </div>
-              <div className='flex'>
+              <div
+                className={
+                  openDetails && index === indexDetail
+                    ? 'flex self-start'
+                    : 'flex self-end'
+                }
+              >
                 <button onClick={() => handleListDetailClick(index)}>
-                  {openDetails ? <GoArrowUp /> : <GoArrowDown />}
+                  {openDetails && index === indexDetail ? (
+                    <GoArrowUp />
+                  ) : (
+                    <GoArrowDown />
+                  )}
                 </button>
               </div>
             </div>
             <div>
-              {openDetails && (
+              {openDetails && index === indexDetail && (
                 <TeamEventsListDetails
-                  awayTeam={event.teams.away.name}
-                  homeTeam={event.teams.home.name}
                   leagueName={event.league.name}
-                  local={event.league.country}
+                  teamAway={event.teams.away.name}
+                  teamHome={event.teams.home.name}
+                  contry={`${event.fixture.venue.name} - ${event.fixture.venue.city}`}
+                  open={openDetails}
                 />
               )}
             </div>

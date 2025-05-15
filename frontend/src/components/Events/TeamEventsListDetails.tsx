@@ -1,22 +1,30 @@
 import ParagraphList from '../UI/ParagraphList';
-import type { FavoriteTeamEventDetails } from '../../models/eventsModels';
+import { TbListDetails } from 'react-icons/tb';
 
-const TeamEventsListDetails: React.FC<FavoriteTeamEventDetails> = (
-  eventDetails
-) => {
+const TeamEventsListDetails: React.FC<{
+  teamHome: string;
+  teamAway: string;
+  leagueName: string;
+  contry: string;
+  open: boolean;
+}> = ({ teamHome, teamAway, leagueName, contry, open }) => {
   return (
-    <div>
-      <ParagraphList description='Liga:' value={eventDetails.leagueName} />
-      <ParagraphList
-        description='Time da casa:'
-        value={eventDetails.homeTeam}
-      />
-      <ParagraphList
-        description='Time de fora:'
-        value={eventDetails.awayTeam}
-      />
-      <ParagraphList description='Local:' value={eventDetails.local} />
-    </div>
+    <>
+      {open && (
+        <div>
+          <ParagraphList description='Liga:' value={leagueName} />
+          <div className='flex flex-row'>
+            <ParagraphList description='Time da casa:' value={teamHome} />
+            <button className='ml-4'>
+              <TbListDetails />
+            </button>
+          </div>
+
+          <ParagraphList description='Time de fora:' value={teamAway} />
+          <ParagraphList description='Local:' value={contry} />
+        </div>
+      )}
+    </>
   );
 };
 
