@@ -1,3 +1,6 @@
+import { useContext } from 'react';
+import { FavoriteTeamsDataContext } from '../../context/favoriteTeams.context';
+
 import { useMutation } from '@tanstack/react-query';
 import { queryClient } from '../../api/teams';
 import { createNewFavoriteTeam } from '../../api/teams';
@@ -10,6 +13,10 @@ const ListAllTeams: React.FC<{
   data: TeamFull[];
   userId: string;
 }> = ({ data, userId }) => {
+  const { qtdFavoriteTeams } = useContext(FavoriteTeamsDataContext);
+
+  console.log('qtdFavoriteTeams', qtdFavoriteTeams);
+
   const { mutate, isError, error } = useMutation({
     mutationFn: createNewFavoriteTeam,
     onSuccess: () => {
@@ -18,7 +25,10 @@ const ListAllTeams: React.FC<{
   });
 
   function handleListClick(id: number, item: string) {
-    console.log('id', id);
+    if (qtdFavoriteTeams === 5) {
+      alert('Não é possível cadastrar mais de 5 times favoritos.');
+      return;
+    }
     mutate({
       name: item,
       teamId: id,
@@ -29,8 +39,6 @@ const ListAllTeams: React.FC<{
   if (isError) {
     console.log(error['message']);
   }
-
-  console.log(data);
 
   return (
     <ListContainer message='Selecione o(s) time(s):'>

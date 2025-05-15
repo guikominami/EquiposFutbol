@@ -1,4 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
+import { useContext } from 'react';
+import { FavoriteTeamsDataContext } from '../../context/favoriteTeams.context';
 
 import LoadingIndicator from '../UI/LoadingIndicator';
 import ErrorBlock from '../UI/ErrorBlock';
@@ -6,9 +8,7 @@ import ListContainer from '../UI/ListContainer';
 import ListItem from '../UI/ListItem';
 
 import { fetchFavoriteTeams } from '../../api/teams';
-
 import type { FavoriteTeam } from '../../models/teamModels';
-
 import { GetUserCredentials } from '../Auth/UserCredentials';
 
 const FavoriteTeamsList: React.FC<{
@@ -16,6 +16,8 @@ const FavoriteTeamsList: React.FC<{
   iconType: string;
 }> = ({ onClick, iconType }) => {
   const { userId } = GetUserCredentials();
+
+  const { setQtdFavoriteTeams } = useContext(FavoriteTeamsDataContext);
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['favoriteTeams'],
@@ -44,21 +46,21 @@ const FavoriteTeamsList: React.FC<{
   }
 
   if (data != undefined && data.length > 0) {
+    setQtdFavoriteTeams(data.length);
+
     content = (
-      <>
-        <ListContainer message='Seus time(s) favorito(s):'>
-          {data.map((team) => (
-            <ListItem
-              key={team._id}
-              id={team._id}
-              item={team.name}
-              onListClick={() => onClick(team)}
-              hasButton={true}
-              iconType={iconType}
-            />
-          ))}
-        </ListContainer>
-      </>
+      <ListContainer message='Seus time(s) favorito(s):'>
+        {data.map((team) => (
+          <ListItem
+            key={team._id}
+            id={team._id}
+            item={team.name}
+            onListClick={() => onClick(team)}
+            hasButton={true}
+            iconType={iconType}
+          />
+        ))}
+      </ListContainer>
     );
   }
 

@@ -11,6 +11,8 @@ import { removeFavoriteTeam } from '../api/teams';
 
 import { useContext } from 'react';
 import { UserDataContext } from '../context/user.context';
+import { FavoriteTeamsContextProvider } from '../context/favoriteTeams.context';
+
 import type { FavoriteTeam } from '../models/teamModels';
 
 const Teams = () => {
@@ -38,8 +40,10 @@ const Teams = () => {
     <Section>
       <Container>
         <Title title='Selecione seus times de futebol para criar a lista de favoritos:' />
-        <AllTeams />
-        <FavoriteTeamsList onClick={handleListClick} iconType='X' />
+        <FavoriteTeamsContextProvider>
+          <AllTeams />
+          <FavoriteTeamsList onClick={handleListClick} iconType='X' />
+        </FavoriteTeamsContextProvider>
       </Container>
     </Section>
   );
