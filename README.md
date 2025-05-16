@@ -40,3 +40,7 @@ Backend:
 
 executar comando:
 nodemon index.js
+
+Mock:
+Caso deseje criar arquivos de teste isolados, criar a variável de ambiente dataType com valor: mock.
+Os arquivos que serão usados como massa de teste estão em backend/datamock
