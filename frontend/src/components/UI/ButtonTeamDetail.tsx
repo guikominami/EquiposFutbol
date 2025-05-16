@@ -4,13 +4,17 @@ const ButtonTeamDetail: React.FC<{
   description: string;
   value: string;
   onClick: () => void;
-}> = ({ description, value, onClick }) => {
+  enableButton: boolean;
+}> = ({ description, value, onClick, enableButton }) => {
+  console.log(enableButton);
   return (
     <div className='flex flex-row'>
       <ParagraphList description={description} value={value} />
-      <button className='ml-2 bg-yellow-200 px-2 border-1' onClick={onClick}>
-        ?
-      </button>
+      {enableButton && (
+        <button className='ml-2 bg-yellow-200 px-2 border-1' onClick={onClick}>
+          ?
+        </button>
+      )}
     </div>
   );
 };

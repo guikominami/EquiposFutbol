@@ -13,7 +13,7 @@ const TeamEventsListDetails: React.FC<{
   open: boolean;
   teamAwayId: number;
   teamHomeId: number;
-  favoriteTeamId: number;
+  teamAdversary: number;
 }> = ({
   teamHome,
   teamAway,
@@ -22,7 +22,7 @@ const TeamEventsListDetails: React.FC<{
   open,
   teamAwayId,
   teamHomeId,
-  favoriteTeamId,
+  teamAdversary,
 }) => {
   const [openDetails, setOpenDetails] = useState<boolean>(false);
 
@@ -30,26 +30,23 @@ const TeamEventsListDetails: React.FC<{
     setOpenDetails((state) => !state);
   }
 
-  console.log('favoriteTeamId', favoriteTeamId);
-  console.log('teamHomeId', teamHomeId);
-  console.log('teamAwayId', teamAwayId);
-
   return (
     <>
       {open && (
         <div>
           <ParagraphList description='Liga:' value={leagueName} />
-          <div className='flex flex-row'>
-            <ParagraphList description='Time da casa:' value={teamHome} />
-            <ButtonTeamDetail
-              onClick={handleButtonDetailClick}
-              description='Time da casa:'
-              value={teamHome}
-            />
-          </div>
-          <div className='flex flex-row'>
-            <ParagraphList description='Time de fora:' value={teamAway} />
-          </div>
+          <ButtonTeamDetail
+            onClick={handleButtonDetailClick}
+            description='Time da casa:'
+            value={teamHome}
+            enableButton={teamHomeId === teamAdversary}
+          />
+          <ButtonTeamDetail
+            onClick={handleButtonDetailClick}
+            description='Time da fora:'
+            value={teamAway}
+            enableButton={teamAwayId === teamAdversary}
+          />
           <ParagraphList description='Local:' value={contry} />
           {openDetails && (
             <TeamAwayDetail

@@ -57,13 +57,13 @@ const TeamEventsList: React.FC<{
                   teamHome={event.teams.home.name}
                   contry={`${event.fixture.venue.name} - ${event.fixture.venue.city}`}
                   open={openDetails}
-                  teamAwayId={
+                  teamAwayId={event.teams.away.id}
+                  teamHomeId={event.teams.home.id}
+                  teamAdversary={
                     event.teams.away.id === favoriteTeamId
                       ? event.teams.home.id
                       : event.teams.away.id
                   }
-                  teamHomeId={event.teams.home.id}
-                  favoriteTeamId={favoriteTeamId}
                 />
               )}
             </div>

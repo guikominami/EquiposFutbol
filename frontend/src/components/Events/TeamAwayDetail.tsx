@@ -16,7 +16,6 @@ const TeamAwayDetail: React.FC<{
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['teams'],
     queryFn: ({ signal }) => fetchTeams(signal, teamAwayId.toString(), 'id/'),
-    staleTime: 5000,
   });
 
   //console
@@ -41,11 +40,17 @@ const TeamAwayDetail: React.FC<{
 
   if (data !== undefined && data.length > 0) {
     content = (
-      <div>
-        <Title title='Dados do time de fora' />
-        <ParagraphList description='' value={data[0].team.name} />
-        <ParagraphList description='' value={data[0].team.code} />
-        <ParagraphList description='' value={data[0].venue.city} />
+      <div className='flex flex-row'>
+        <div className='flex flex-col w-[80%]'>
+          <ParagraphList description='Nombre:' value={data[0].team.name} />
+          <ParagraphList description='Codigo:' value={data[0].team.code} />
+          <ParagraphList description='Cidade:' value={data[0].venue.city} />
+
+          <ParagraphList description='Goals: ' value='' />
+        </div>
+        <div>
+          <img className='w-10' src={data[0].team.logo} alt='' />
+        </div>
       </div>
     );
   }
