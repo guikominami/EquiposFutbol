@@ -14,6 +14,7 @@ const TeamEventsListDetails: React.FC<{
   teamAwayId: number;
   teamHomeId: number;
   teamAdversary: number;
+  favoriteTeamId: number;
 }> = ({
   teamHome,
   teamAway,
@@ -23,12 +24,18 @@ const TeamEventsListDetails: React.FC<{
   teamAwayId,
   teamHomeId,
   teamAdversary,
+  favoriteTeamId,
 }) => {
   const [openDetails, setOpenDetails] = useState<boolean>(false);
 
   function handleButtonDetailClick() {
     setOpenDetails((state) => !state);
   }
+
+  console.log('favoriteTeamId', favoriteTeamId);
+  console.log('teamHomeId', teamHomeId);
+  console.log('teamAwayId', teamAwayId);
+  console.log('teamAdversary', teamAdversary);
 
   return (
     <>
@@ -39,13 +46,13 @@ const TeamEventsListDetails: React.FC<{
             onClick={handleButtonDetailClick}
             description='Time da casa:'
             value={teamHome}
-            enableButton={teamHomeId === teamAdversary}
+            enableButton={teamHomeId !== favoriteTeamId}
           />
           <ButtonTeamDetail
             onClick={handleButtonDetailClick}
-            description='Time da fora:'
+            description='Time de fora:'
             value={teamAway}
-            enableButton={teamAwayId === teamAdversary}
+            enableButton={teamAwayId !== favoriteTeamId}
           />
           <ParagraphList description='Local:' value={contry} />
           {openDetails && (

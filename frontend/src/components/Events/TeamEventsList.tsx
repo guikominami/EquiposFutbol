@@ -21,7 +21,7 @@ const TeamEventsList: React.FC<{
   }
 
   return (
-    <ul className='mt-4 scroll-auto w-fit'>
+    <ul className='mt-4 scroll-auto w-fit md:w-[100%]'>
       {data.map((event, index) => (
         <li className='p-4 bg-black/10 mb-2 border-b-2' key={index}>
           <div className='flex flex-col'>
@@ -64,6 +64,7 @@ const TeamEventsList: React.FC<{
                       ? event.teams.home.id
                       : event.teams.away.id
                   }
+                  favoriteTeamId={favoriteTeamId}
                 />
               )}
             </div>

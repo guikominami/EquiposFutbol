@@ -54,7 +54,7 @@ const NewUser = () => {
           >
             <Subtitle message='Introduce tu nombre:' />
             <Input inputValue={userName} id='name' />
-            <Subtitle message='Introduce tu email:' />
+            <Subtitle message='Introduce tu correo electrónico:' />
             <Input inputValue={userEmail} id='email' />
             <Subtitle message='Introduce tua senha:' />
             <Input inputValue={userPassword} id='senha' isPassword />

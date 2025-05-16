@@ -5,7 +5,7 @@ const ParagraphList: React.FC<{ description: string; value: string }> = ({
   value,
 }) => {
   return (
-    <p>
+    <p className='md:text-lg'>
       <b>{description}</b> {value}
     </p>
   );

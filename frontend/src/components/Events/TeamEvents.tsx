@@ -46,12 +46,14 @@ const TeamEvents: React.FC<{
   return (
     <>
       <aside
-        className={`h-full absolute z-0 top-19 w-[100%] md:w-[20%] border-r bg-white 
+        className={`h-full absolute z-0 top-19 w-[100%] 
+                    border-r bg-white 
                     duration-500 ease-in-out ${
                       isOpen ? 'right-0' : '-right-100'
-                    }`}
+                    }
+                    md:relative md:top-0`}
       >
-        <div className='flex px-4 mt-4 justify-end '>
+        <div className='flex px-4 mt-4 justify-end md:hidden'>
           <AiOutlineClose size={30} onClick={onClosePage} />
         </div>
 

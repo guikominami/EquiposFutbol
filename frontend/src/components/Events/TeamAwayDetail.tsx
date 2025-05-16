@@ -18,10 +18,6 @@ const TeamAwayDetail: React.FC<{
     queryFn: ({ signal }) => fetchTeams(signal, teamAwayId.toString(), 'id/'),
   });
 
-  //console
-  console.log(teamAwayId);
-  console.log(data);
-
   let content;
 
   if (isLoading) {
@@ -49,7 +45,7 @@ const TeamAwayDetail: React.FC<{
           <ParagraphList description='Goals: ' value='' />
         </div>
         <div>
-          <img className='w-10' src={data[0].team.logo} alt='' />
+          <img className='w-10 md:w-30' src={data[0].team.logo} alt='' />
         </div>
       </div>
     );
@@ -58,11 +54,12 @@ const TeamAwayDetail: React.FC<{
   return (
     <div
       className='
-      h-full fixed z-0 
-      top-18 left-0 w-[100%]  
-      bg-black/80'
+        h-full fixed z-0 
+        top-18 left-0 w-[100%]  
+        bg-black/80
+      '
     >
-      <div className='bg-white flex flex-col p-4 my-10 mx-10'>
+      <div className='bg-white flex flex-col p-4 my-10 mx-10 md:p-20 md:w-[60%] md:m-30 md:ml-90'>
         <div className='flex justify-end '>
           <AiOutlineClose size={30} onClick={onClosePage} />
         </div>

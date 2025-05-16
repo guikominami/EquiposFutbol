@@ -36,7 +36,7 @@ const Login = () => {
         navigate('/events');
       } catch (error) {
         console.log(error);
-        alert('Nombre de usuario o contraseña no válidos.');
+        alert('Correo de usuario o contraseña no válidos.');
       }
 
       userEmail.current!.value = '';
@@ -58,7 +58,7 @@ const Login = () => {
             className='flex flex-col justify-start align-middle'
             onSubmit={handleSubmit}
           >
-            <Subtitle message='Introduce tu nombre:' />
+            <Subtitle message='Introduce tu correo electrónico:' />
             <Input inputValue={userEmail} id='email' />
             <Subtitle message='Introduce tua senha:' />
             <Input inputValue={userPassword} id='senha' isPassword />
