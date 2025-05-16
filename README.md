@@ -1,4 +1,4 @@
-# React + TypeScript + Vite
+# React + TypeScript + Vite + NodeJS
 
 Equipos Futbol
 App para consultar los próximos partidos de tus equipos favoritos.
