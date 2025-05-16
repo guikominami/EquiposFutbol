@@ -1,10 +1,17 @@
 import React from 'react';
-
-const ButtonTeamDetail: React.FC<{ onClick: () => void }> = ({ onClick }) => {
+import ParagraphList from './ParagraphList';
+const ButtonTeamDetail: React.FC<{
+  description: string;
+  value: string;
+  onClick: () => void;
+}> = ({ description, value, onClick }) => {
   return (
-    <button className='ml-2 bg-yellow-200 px-2 border-1' onClick={onClick}>
-      ?
-    </button>
+    <div className='flex flex-row'>
+      <ParagraphList description={description} value={value} />
+      <button className='ml-2 bg-yellow-200 px-2 border-1' onClick={onClick}>
+        ?
+      </button>
+    </div>
   );
 };
 

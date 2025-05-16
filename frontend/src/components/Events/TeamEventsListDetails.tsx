@@ -41,7 +41,11 @@ const TeamEventsListDetails: React.FC<{
           <ParagraphList description='Liga:' value={leagueName} />
           <div className='flex flex-row'>
             <ParagraphList description='Time da casa:' value={teamHome} />
-            <ButtonTeamDetail onClick={handleButtonDetailClick} />
+            <ButtonTeamDetail
+              onClick={handleButtonDetailClick}
+              description='Time da casa:'
+              value={teamHome}
+            />
           </div>
           <div className='flex flex-row'>
             <ParagraphList description='Time de fora:' value={teamAway} />

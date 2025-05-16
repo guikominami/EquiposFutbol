@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 import Title from '../UI/Title';
+import ParagraphList from '../UI/ParagraphList';
 import { AiOutlineClose } from 'react-icons/ai';
 
 import { fetchTeams } from '../../api/teams';
@@ -39,7 +40,14 @@ const TeamAwayDetail: React.FC<{
   }
 
   if (data !== undefined && data.length > 0) {
-    content = <div>data</div>;
+    content = (
+      <div>
+        <Title title='Dados do time de fora' />
+        <ParagraphList description='' value={data[0].team.name} />
+        <ParagraphList description='' value={data[0].team.code} />
+        <ParagraphList description='' value={data[0].venue.city} />
+      </div>
+    );
   }
 
   return (
