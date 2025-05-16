@@ -18,6 +18,10 @@ const TeamAwayDetail: React.FC<{
     staleTime: 5000,
   });
 
+  //console
+  console.log(teamAwayId);
+  console.log(data);
+
   let content;
 
   if (isLoading) {
@@ -35,7 +39,7 @@ const TeamAwayDetail: React.FC<{
   }
 
   if (data !== undefined && data.length > 0) {
-    content = <div></div>;
+    content = <div>data</div>;
   }
 
   return (

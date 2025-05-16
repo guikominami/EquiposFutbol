@@ -46,8 +46,6 @@ const FavoriteTeamsList: React.FC<{
   }
 
   if (data != undefined && data.length > 0) {
-    setQtdFavoriteTeams(data.length);
-
     content = (
       <ListContainer message='Seus time(s) favorito(s):'>
         {data.map((team) => (
@@ -62,6 +60,8 @@ const FavoriteTeamsList: React.FC<{
         ))}
       </ListContainer>
     );
+
+    setQtdFavoriteTeams(data.length);
   }
 
   return <div>{content}</div>;

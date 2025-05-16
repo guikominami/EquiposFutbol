@@ -8,7 +8,10 @@ import ParagraphList from '../UI/ParagraphList';
 
 import TeamEventsListDetails from './TeamEventsListDetails';
 
-const TeamEventsList: React.FC<{ data: EventsTeam[] }> = ({ data }) => {
+const TeamEventsList: React.FC<{
+  data: EventsTeam[];
+  favoriteTeamId: number;
+}> = ({ data, favoriteTeamId }) => {
   const [openDetails, setOpenDetails] = useState<boolean>(false);
   const [indexDetail, setIndexDetail] = useState<number>();
 
@@ -54,7 +57,13 @@ const TeamEventsList: React.FC<{ data: EventsTeam[] }> = ({ data }) => {
                   teamHome={event.teams.home.name}
                   contry={`${event.fixture.venue.name} - ${event.fixture.venue.city}`}
                   open={openDetails}
-                  teamAwayId={event.teams.away.id}
+                  teamAwayId={
+                    event.teams.away.id === favoriteTeamId
+                      ? event.teams.home.id
+                      : event.teams.away.id
+                  }
+                  teamHomeId={event.teams.home.id}
+                  favoriteTeamId={favoriteTeamId}
                 />
               )}
             </div>

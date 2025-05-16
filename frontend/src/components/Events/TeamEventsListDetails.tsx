@@ -3,6 +3,7 @@ import { useState } from 'react';
 import TeamAwayDetail from './TeamAwayDetail';
 
 import ParagraphList from '../UI/ParagraphList';
+import ButtonTeamDetail from '../UI/ButtonTeamDetail';
 
 const TeamEventsListDetails: React.FC<{
   teamHome: string;
@@ -11,12 +12,27 @@ const TeamEventsListDetails: React.FC<{
   contry: string;
   open: boolean;
   teamAwayId: number;
-}> = ({ teamHome, teamAway, leagueName, contry, open, teamAwayId }) => {
+  teamHomeId: number;
+  favoriteTeamId: number;
+}> = ({
+  teamHome,
+  teamAway,
+  leagueName,
+  contry,
+  open,
+  teamAwayId,
+  teamHomeId,
+  favoriteTeamId,
+}) => {
   const [openDetails, setOpenDetails] = useState<boolean>(false);
 
   function handleButtonDetailClick() {
     setOpenDetails((state) => !state);
   }
+
+  console.log('favoriteTeamId', favoriteTeamId);
+  console.log('teamHomeId', teamHomeId);
+  console.log('teamAwayId', teamAwayId);
 
   return (
     <>
@@ -25,15 +41,11 @@ const TeamEventsListDetails: React.FC<{
           <ParagraphList description='Liga:' value={leagueName} />
           <div className='flex flex-row'>
             <ParagraphList description='Time da casa:' value={teamHome} />
-            <button
-              className='ml-2 bg-yellow-200 px-2 border-1'
-              onClick={handleButtonDetailClick}
-            >
-              ?
-            </button>
+            <ButtonTeamDetail onClick={handleButtonDetailClick} />
           </div>
-
-          <ParagraphList description='Time de fora:' value={teamAway} />
+          <div className='flex flex-row'>
+            <ParagraphList description='Time de fora:' value={teamAway} />
+          </div>
           <ParagraphList description='Local:' value={contry} />
           {openDetails && (
             <TeamAwayDetail

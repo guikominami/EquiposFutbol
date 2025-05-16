@@ -1,4 +1,5 @@
 import React from 'react';
+import { BiDetail } from 'react-icons/bi';
 
 const ListItem: React.FC<{
   id: number | string;
@@ -21,7 +22,11 @@ const ListItem: React.FC<{
     >
       <div className='flex justify-between'>
         {item}
-        {hasButton && <button className='mr-2 font-bold'>{iconType}</button>}
+        {hasButton && (
+          <button className='mr-2 font-bold'>
+            {iconType === 'detalhe' ? <BiDetail /> : iconType}
+          </button>
+        )}
       </div>
     </li>
   );

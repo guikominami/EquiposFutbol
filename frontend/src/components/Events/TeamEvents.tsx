@@ -15,12 +15,12 @@ const TeamEvents: React.FC<{
   isOpen: boolean;
   onClosePage: () => void;
 }> = ({ favoriteTeam, isOpen, onClosePage }) => {
-  const teamId = favoriteTeam.teamId;
-  const teamName = favoriteTeam.name;
+  const favoriteTeamId = favoriteTeam.teamId;
+  const favoriteTeamName = favoriteTeam.name;
 
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ['teamsEvents', { teamId }],
-    queryFn: ({ signal }) => fetchTeamNextEvents(signal, teamId),
+    queryKey: ['teamsEvents', { favoriteTeamId }],
+    queryFn: ({ signal }) => fetchTeamNextEvents(signal, favoriteTeamId),
   });
 
   let content;
@@ -40,7 +40,7 @@ const TeamEvents: React.FC<{
   }
 
   if (data != undefined && data.length > 0) {
-    content = <TeamEventsList data={data} />;
+    content = <TeamEventsList data={data} favoriteTeamId={favoriteTeamId} />;
   }
 
   return (
@@ -56,7 +56,7 @@ const TeamEvents: React.FC<{
         </div>
 
         <div className='p-6'>
-          <Title title={`Próximas partidas do ${teamName}`} />
+          <Title title={`Próximas partidas do ${favoriteTeamName}`} />
           <div>{content}</div>
         </div>
       </aside>
