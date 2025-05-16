@@ -5,6 +5,9 @@ App para consultar los próximos partidos de tus equipos favoritos.
 
 PROCEDIMENTOS:
 
+install node
+install git
+
 Frontend:
 
 1. Clonar repositorio
@@ -37,10 +40,11 @@ Backend:
 
 2. instalar dependencias
    npm install
+   npm i -g nodemon
 
 executar comando:
 nodemon index.js
 
 Mock:
-Caso deseje criar arquivos de teste isolados, criar a variável de ambiente dataType com valor: mock.
-Os arquivos que serão usados como massa de teste estão em backend/datamock
+Si desea acceder a la aplicación sin una conexión externa, cree la variable de entorno dataType con el valor: mock.
+Los archivos que se utilizarán como masa de prueba se encuentran en backend/datamock
